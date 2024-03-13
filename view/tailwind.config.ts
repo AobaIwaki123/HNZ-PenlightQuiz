@@ -11,10 +11,10 @@ const config = {
   prefix: "",
   theme: {
     colors: {
-      base: "#72F2EB",
-      primary: "#00CCBF",
-      secondary: "#3F7C85",
-      accent: "#FF5F5D",
+      basecolor: "#5bbee5",
+      primarycolor: "#fee100",
+      secondarycolor: "#3F7C85",
+      accentcolor: "#ffffff",
     },
     container: {
       center: true,
