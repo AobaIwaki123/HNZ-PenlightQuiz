@@ -1,0 +1,15 @@
+version: "3"
+services:
+  # Next.jsの環境
+  view:
+    container_name: "view"
+    build:
+      context: ./view
+    volumes:
+      - ./view:/view
+      - ./view/node_modules:/view/node_modules
+    command: sh -c "yarn && yarn dev"
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
