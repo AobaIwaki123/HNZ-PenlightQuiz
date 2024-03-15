@@ -3,8 +3,15 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
+  const moveToAnswer = () => {
+    router.push("/quiz/answer");
+  };
+
   return (
     <main>
       <div className="flex flex-wrap justify-around items-center h-screen bg-basecolor">
@@ -47,7 +54,9 @@ export default function Home() {
               <Card>Penlight2</Card>
             </div>
           </div>
-          <Button>Submit Answer</Button>
+          <Button onClick={moveToAnswer}>
+              Submit Answer
+          </Button>
         </div>
       </div>
     </main>
