@@ -51,10 +51,10 @@ export default function Home() {
         <div className="flex flex-col h-full w-1/2 p-4 justify-around items-center">
           <div className="flex h-3/4 w-full">
             <div className="h-full w-1/2 border-accentcolor border-4" id="penlightLeft">
-              <Penlight color="red" />
+              <Penlight color="bg-secondarycolor" />
             </div>
             <div className="h-full flex-auto border-accentcolor border-4" id="penlightRight">
-              <Penlight color="red" />
+              <Penlight color="bg-secondarycolor" />
             </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
@@ -76,17 +76,24 @@ const Penlight: React.FC<PenlightProps> = ({ color }) => {
   return (
     <div className="flex h-full w-full justify-center items-center bg-primarycolor">
       <div className="flex flex-col items-center w-1/2 h-4/5 bg-secondarycolor">
-        <PenlightTop />
+        <PenlightTop color={color}/>
         <PenlightBottom />
       </div>
     </div>
   );
 };
 
-const PenlightTop: React.FC = () => {
+const PenlightTop: React.FC<PenlightProps> = ({ color }) => {
   return (
-    <div className="h-2/3 w-1/2 
-      border-4 border-basecolor bg-accentcolor"></div>
+    <div className="flex-col h-2/3 w-1/2 
+      border-4 border-basecolor bg-accentcolor">
+      <div className="h-5 w-full bg-basecolor"></div>
+      <div className={`flex h-full justify-center items-center ${color}`}>
+        <div className="text-center text-accentcolor tracking-widest text-3xl vertical">
+          <p>齊藤京子</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     colors: {
@@ -80,7 +80,16 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.vertical': {
+          writingMode: 'vertical-rl',
+        },
+      }
+      addUtilities(newUtilities)
+    },
+    require("tailwindcss-animate")],
 } satisfies Config
 
 export default config
