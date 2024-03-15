@@ -2,14 +2,14 @@ version: "3"
 services:
   # Next.jsの環境
   view:
-    container_name: "view"
+    container_name: "hnz-view"
     build:
       context: ./view
     volumes:
       - ./view:/view
       - ./view/node_modules:/view/node_modules
-    command: sh -c "yarn && yarn dev"
+    command: sh -c "PORT=3030 npm run dev"
     ports:
-      - "3000:3000"
+      - "3030:3030"
     stdin_open: true
     tty: true
