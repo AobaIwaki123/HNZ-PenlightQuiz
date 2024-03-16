@@ -16,17 +16,19 @@ export default function Home() {
   const penlightColorLeft = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_LEFT);
   const penlightColorRight = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_RIGHT);
 
-  if(nickname === null || penlightColorLeft === null || penlightColorRight === null) return false;
+  if (nickname === null || penlightColorLeft === null || penlightColorRight === null) return false;
 
   const leftColorNameJn: string = JSON.parse(penlightColorLeft).nameJn;
   const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
 
   const moveToQuiz = async () => {
-    console.log("moveToQuiz")
     await getNextQuiz();
-    console.log("moveToQuiz")
     router.push("/quiz");
   };
+
+  const moveToTop = () => {
+    router.push("/");
+  }
 
   return (
     <main>
@@ -73,7 +75,16 @@ export default function Home() {
         <div className="flex-auto flex-col bg-secondarycolor" id="right">
           <div className="h-3/4  bg-secondarycolor" id="blank"></div>
           <div className="flex h-1/4  bg-primarycolor" id="">
-            <div className="w-1/2 bg-primarycolor" id="blank"></div>
+            <div className="flex justify-center items-center w-1/2 bg-primarycolor" id="blank">
+              <Button className="h-1/2
+                bg-secondarycolor text-xl md:text-2xl text-primarycolor
+                border-4 border-secondarycolor
+                hover:bg-primarycolor hover:text-secondarycolor hover:border-secondarycolor"
+                onClick={moveToTop}
+                id="nextButton">
+                Top Page
+              </Button>
+            </div>
             <div className="flex flex-auto justify-center items-center bg-basecolor" id="">
               <Button className="h-1/2
                 bg-transparent text-xl md:text-2xl
