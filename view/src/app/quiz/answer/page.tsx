@@ -26,7 +26,7 @@ export default function Home() {
   const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
 
   
-  const isCorrectAnswer = () => {
+  const IsCorrectAnswer = () => {
     const searchParams = useSearchParams();
     const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
     const colorIdRight: number = Number(searchParams.get("colorIdRight"));
@@ -52,7 +52,7 @@ export default function Home() {
               text-4xl md:text-8xl" id="answer">
               <div className="m-3 object-center object-cover">
                 <Suspense>
-                  {isCorrectAnswer() ? "正解!" : "不正解!"}
+                  {IsCorrectAnswer() ? "正解!" : "不正解!"}
                 </Suspense>
               </div>
             </Card>
