@@ -1,15 +1,16 @@
 "use client";
-import { getRandomMember, getColorName } from "@/api/quiz";
+import { getRandomMember } from "@/api/quiz";
+import { PenlightProps } from "@/lib/type";
 import { QUIZ_DATA } from "@/lib/const";
 
 export const getNextQuiz = async () => {
   console.log("getNextQuiz");
-  const quizData = await getRandomMember();
-  localStorage.setItem(QUIZ_DATA.MEMBER_NAME, quizData[QUIZ_DATA.MEMBER_NAME]);
-  localStorage.setItem(QUIZ_DATA.NICKNAME, quizData[QUIZ_DATA.NICKNAME]);
-  localStorage.setItem(QUIZ_DATA.MEMBER_IMAGE, quizData[QUIZ_DATA.MEMBER_IMAGE]);
-  localStorage.setItem(QUIZ_DATA.MEMBER_COLOR_LEFT, quizData[QUIZ_DATA.MEMBER_COLOR_LEFT]);
-  localStorage.setItem(QUIZ_DATA.MEMBER_COLOR_RIGHT, quizData[QUIZ_DATA.MEMBER_COLOR_RIGHT]);
-  localStorage.setItem(QUIZ_DATA.MEMBER_INFO, quizData[QUIZ_DATA.MEMBER_INFO]);
+  const quizData: PenlightProps = await getRandomMember();
+  // Save to localStorage with keys of PenlightProps
+  localStorage.setItem(QUIZ_DATA.MEMBER_NAME, quizData.memberName);
+  localStorage.setItem(QUIZ_DATA.MEMBER_IMAGE, quizData.memberImage);
+  localStorage.setItem(QUIZ_DATA.NICKNAME, quizData.nickname);
+  localStorage.setItem(QUIZ_DATA.MEMBER_COLOR_LEFT, JSON.stringify(quizData.colorLeft));
+  localStorage.setItem(QUIZ_DATA.MEMBER_COLOR_RIGHT, JSON.stringify(quizData.colorRight));
 };
 

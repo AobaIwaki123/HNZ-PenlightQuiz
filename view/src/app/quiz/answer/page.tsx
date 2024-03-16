@@ -16,6 +16,11 @@ export default function Home() {
   const penlightColorLeft = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_LEFT);
   const penlightColorRight = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_RIGHT);
 
+  if(nickname === null || penlightColorLeft === null || penlightColorRight === null) return false;
+
+  const leftColorNameJn: string = JSON.parse(penlightColorLeft).nameJn;
+  const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
+
   const moveToQuiz = () => {
     getNextQuiz();
     router.push("/quiz");
@@ -50,14 +55,14 @@ export default function Home() {
             <div className="flex justify-center items-center h-1/2 w-full">
               <Card className="border-4 text-basecolor border-basecolor">
                 <div className="m-5">
-                  {penlightColorLeft}(左7)
+                  {leftColorNameJn}
                 </div>
               </Card>
             </div>
             <div className="flex justify-center items-center h-1/2 w-full">
               <Card className="border-4 text-basecolor border-basecolor">
                 <div className="m-5">
-                  {penlightColorRight}(左7)
+                  {rightColorNameEn}
                 </div>
               </Card>
             </div>

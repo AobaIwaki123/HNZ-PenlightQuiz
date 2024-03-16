@@ -14,12 +14,19 @@ type PenlightProps = {
 export default function Home() {
   const router = useRouter();
   if (typeof window === 'undefined') return false;
-  
+
   const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
   const memberImage = localStorage.getItem(QUIZ_DATA.MEMBER_IMAGE);
   const memberInfo = localStorage.getItem(QUIZ_DATA.MEMBER_INFO);
+  const penlightColorLeft = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_LEFT);
+  const penlightColorRight = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_RIGHT);
 
-  if(memberName === null || memberImage === null || memberInfo === null) return false;
+  if (memberName === null || memberImage === null || memberInfo === null || penlightColorLeft === null || penlightColorRight === null) return false;
+
+  const leftColorNameEn: string = JSON.parse(penlightColorLeft).nameEn;
+  const rightColorNameEn: string = JSON.parse(penlightColorRight).nameEn;
+
+  console.log(leftColorNameEn, rightColorNameEn);
 
   const moveToAnswer = () => {
     router.push("/quiz/answer");
@@ -58,10 +65,10 @@ export default function Home() {
         <div className="flex flex-col h-full w-1/2 p-4 justify-around items-center">
           <div className="flex h-3/4 w-full">
             <div className="h-full w-1/2 border-accentcolor border-4" id="penlightLeft">
-              <Penlight color="bg-secondarycolor" />
+              <Penlight color={`bg-primarycolor`} />
             </div>
             <div className="h-full flex-auto border-accentcolor border-4" id="penlightRight">
-              <Penlight color="bg-secondarycolor" />
+              <Penlight color={`bg-primarycolor`} />
             </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
