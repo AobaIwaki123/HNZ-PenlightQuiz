@@ -4,11 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from "react";
-import { QUIZ_DATA } from "@/lib/const";
+import { QUIZ_DATA, COLOR } from "@/lib/const";
 import { getColorName } from "@/api/quiz";
 import { PenlightColor } from "@/lib/type";
+import { isCorrectColor } from "@/lib/quiz/judge";
 
 type PenlightProps = {
+  handleColorIdChanged: (colorId: number) => void;
+};
+
+type PenlightTopProps = {
   color: string;
 };
 
@@ -24,12 +29,14 @@ export default function Home() {
 
   if (memberName === null || memberImage === null || memberInfo === null || penlightColorLeft === null || penlightColorRight === null) return false;
 
-  const leftColorNameEn: string = JSON.parse(penlightColorLeft).nameEn;
-  const rightColorNameEn: string = JSON.parse(penlightColorRight).nameEn;
+  const leftColorNameEn: string = JSON.parse(penlightColorLeft)[COLOR.NAME_EN];
+  const rightColorNameEn: string = JSON.parse(penlightColorRight)[COLOR.NAME_EN];
 
-  console.log(leftColorNameEn, rightColorNameEn);
+  const [colorIdLeft, setColorIdLeft] = React.useState(0);
+  const [colorIdRight, setColorIdRight] = React.useState(0);
 
   const moveToAnswer = () => {
+    console.log(isCorrectColor(colorIdLeft, colorIdRight));
     router.push("/quiz/answer");
   };
 
@@ -66,10 +73,10 @@ export default function Home() {
         <div className="flex flex-col h-full w-1/2 p-4 justify-around items-center">
           <div className="flex h-3/4 w-full">
             <div className="h-full w-1/2 border-accentcolor border-4" id="penlightLeft">
-              <Penlight />
+              <Penlight handleColorIdChanged={setColorIdLeft}/>
             </div>
             <div className="h-full flex-auto border-accentcolor border-4" id="penlightRight">
-              <Penlight />
+              <Penlight handleColorIdChanged={setColorIdRight}/>
             </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
@@ -87,7 +94,7 @@ export default function Home() {
   );
 }
 
-const Penlight: React.FC = () => {
+const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
   const [penlightId, setPenlightId] = React.useState(0);
   const [penlightColorJn, setPenlightColorJn] = React.useState(String);
   const [penlightColorEn, setPenlightColorEn] = React.useState(String);
@@ -108,6 +115,7 @@ const Penlight: React.FC = () => {
       console.log(penlightColorEn);
       setPenlightColorEn(penlightColorEn);
     }
+    handleColorIdChanged(penlightId);
     fetchColor();
   }, [penlightId]);
 
@@ -140,7 +148,7 @@ const Penlight: React.FC = () => {
   );
 };
 
-const PenlightTop: React.FC<PenlightProps> = ({ color }) => {
+const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
   const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
   return (
     <div className="flex-col h-2/3 w-1/2 

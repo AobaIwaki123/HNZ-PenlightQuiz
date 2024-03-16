@@ -8,6 +8,7 @@ export const QUIZ_DATA = {
 }
 
 export const COLOR = {
+  ID: "id",
   NAME_JN: "colorNameJn",
   NAME_EN: "colorNameEn",
 };
