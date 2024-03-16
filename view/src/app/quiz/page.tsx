@@ -7,7 +7,6 @@ import React, { useEffect } from "react";
 import { QUIZ_DATA, COLOR } from "@/lib/const";
 import { getColorName } from "@/api/quiz";
 import { PenlightColor } from "@/lib/type";
-import { isCorrectColor } from "@/lib/quiz/judge";
 
 type PenlightProps = {
   handleColorIdChanged: (colorId: number) => void;
@@ -36,8 +35,7 @@ export default function Home() {
   const [colorIdRight, setColorIdRight] = React.useState(0);
 
   const moveToAnswer = () => {
-    console.log(isCorrectColor(colorIdLeft, colorIdRight));
-    router.push("/quiz/answer");
+    router.push("/quiz/answer?colorIdLeft=" + String(colorIdLeft) + "&colorIdRight=" + String(colorIdRight));
   };
 
   return (

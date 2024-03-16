@@ -7,6 +7,8 @@ import {
   getNextQuiz
 } from "@/lib/quiz/quiz";
 import { QUIZ_DATA } from "@/lib/const";
+import { useSearchParams } from "next/navigation";
+import { isCorrectColor } from "@/lib/quiz/judge";
 
 export default function Home() {
   const router = useRouter();
@@ -20,6 +22,10 @@ export default function Home() {
 
   const leftColorNameJn: string = JSON.parse(penlightColorLeft).nameJn;
   const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
+
+  const searchParams = useSearchParams();
+  const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
+  const colorIdRight: number = Number(searchParams.get("colorIdRight"));
 
   const moveToQuiz = async () => {
     await getNextQuiz();
@@ -39,7 +45,8 @@ export default function Home() {
               border-4 border-basecolor
               text-4xl md:text-8xl" id="answer">
               <div className="m-3 object-center object-cover">
-                正解!
+                {/*  isCorrectColorがtrueなら正解!,falseなら不正解を表示する*/}
+                {isCorrectColor(colorIdLeft, colorIdRight) ? "正解!" : "不正解!"}
               </div>
             </Card>
           </div>
