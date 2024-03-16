@@ -13,3 +13,4 @@ export type PenlightColor = {
   nameJn: string;
   nameEn: string;
 };
+

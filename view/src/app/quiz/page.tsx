@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from 'next/navigation';
-import React from "react";
+import React, { useEffect } from "react";
 import { QUIZ_DATA } from "@/lib/const";
-
+import { getColorName } from "@/api/quiz";
+import { PenlightColor } from "@/lib/type";
 
 type PenlightProps = {
   color: string;
@@ -53,7 +54,7 @@ export default function Home() {
                 className="flex object-center object-cover"
               />
             </Card>
-            <Card className="text-2xl text-center w-full bg-primarycolor border-accentcolor border-4">
+            <Card className="text-2xl text-center w-full bg-penlight_blue border-accentcolor border-4">
               <div className="m-3">
                 <p>
                   {memberInfo}
@@ -65,10 +66,10 @@ export default function Home() {
         <div className="flex flex-col h-full w-1/2 p-4 justify-around items-center">
           <div className="flex h-3/4 w-full">
             <div className="h-full w-1/2 border-accentcolor border-4" id="penlightLeft">
-              <Penlight color={`bg-primarycolor`} />
+              <Penlight />
             </div>
             <div className="h-full flex-auto border-accentcolor border-4" id="penlightRight">
-              <Penlight color={`bg-primarycolor`} />
+              <Penlight />
             </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
@@ -86,12 +87,54 @@ export default function Home() {
   );
 }
 
-const Penlight: React.FC<PenlightProps> = ({ color }) => {
+const Penlight: React.FC = () => {
+  const [penlightId, setPenlightId] = React.useState(0);
+  const [penlightColorJn, setPenlightColorJn] = React.useState(String);
+  const [penlightColorEn, setPenlightColorEn] = React.useState(String);
+
+  const incrementPenlightId = () => {
+    setPenlightId((prev) => (prev + 1) % 15);
+  }
+
+  const decrementPenlightId = () => {
+    setPenlightId((prev) => (prev - 1 + 15) % 15);
+  }
+
+  useEffect(() => {
+    const fetchColor = async () => {
+      const color: PenlightColor = await getColorName(String(penlightId));
+      setPenlightColorJn(color.nameJn);
+      const penlightColorEn = "bg-penlight_" + color.nameEn;
+      console.log(penlightColorEn);
+      setPenlightColorEn(penlightColorEn);
+    }
+    fetchColor();
+  }, [penlightId]);
+
   return (
-    <div className="flex h-full w-full justify-center items-center bg-primarycolor">
+    <div className="flex flex-col h-full w-full justify-center items-center">
       <div className="flex flex-col items-center w-1/2 h-4/5 bg-secondarycolor">
-        <PenlightTop color={color} />
+        <PenlightTop color={penlightColorEn} />
         <PenlightBottom />
+      </div>
+      <div className="flex justify-center w-full">
+        <Card className="w-1/2 text-center border-4 border-basecolor">
+          {penlightColorJn}
+        </Card>
+      </div>
+      <div className="flex justify-evenly w-full">
+        <Button className=" bg-transparent text-lg
+                border-2 border-accentcolor
+                hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
+          onClick={decrementPenlightId}>
+          Left
+        </Button>
+        <Button className=" bg-transparent text-lg
+                border-2 border-accentcolor
+                hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
+          onClick={incrementPenlightId}>
+          Right
+        </Button>
       </div>
     </div>
   );
