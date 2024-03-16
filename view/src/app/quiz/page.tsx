@@ -30,10 +30,6 @@ export default function Home() {
 
   if (memberName === null || memberImage === null || memberInfo === null || penlightColorLeft === null || penlightColorRight === null) return false;
 
-  const leftColorNameEn: string = JSON.parse(penlightColorLeft)[COLOR.NAME_EN];
-  const rightColorNameEn: string = JSON.parse(penlightColorRight)[COLOR.NAME_EN];
-
-
   const moveToAnswer = () => {
     router.push("/quiz/answer?colorIdLeft=" + String(colorIdLeft) + "&colorIdRight=" + String(colorIdRight));
   };
