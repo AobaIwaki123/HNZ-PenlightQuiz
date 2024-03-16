@@ -1,14 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from 'next/navigation';
+import {
+  getNextQuiz
+} from "@/lib/quiz/quiz";
+import { QUIZ_DATA } from "@/lib/const";
 
 export default function Home() {
   const router = useRouter();
 
+  const nickname = localStorage.getItem(QUIZ_DATA.NICKNAME);
+  const penlightColorLeft = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_LEFT);
+  const penlightColorRight = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_RIGHT);
+
   const moveToQuiz = () => {
+    getNextQuiz();
     router.push("/quiz");
   };
 
@@ -31,7 +39,7 @@ export default function Home() {
               border-4 border-accentcolor
               bg-transparent" id="">
               <div className="m-5">
-                きょんこ
+                {nickname}
               </div>
             </Card>
           </div>
@@ -41,14 +49,14 @@ export default function Home() {
             <div className="flex justify-center items-center h-1/2 w-full">
               <Card className="border-4 text-basecolor border-basecolor">
                 <div className="m-5">
-                  ホワイト(左7)
+                  {penlightColorLeft}(左7)
                 </div>
               </Card>
             </div>
             <div className="flex justify-center items-center h-1/2 w-full">
               <Card className="border-4 text-basecolor border-basecolor">
                 <div className="m-5">
-                  ホワイト(左7)
+                  {penlightColorRight}(左7)
                 </div>
               </Card>
             </div>
