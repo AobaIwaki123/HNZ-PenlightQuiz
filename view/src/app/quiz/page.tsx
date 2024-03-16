@@ -13,7 +13,8 @@ type PenlightProps = {
 
 export default function Home() {
   const router = useRouter();
-
+  if (typeof window === 'undefined') return false;
+  
   const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
   const memberImage = localStorage.getItem(QUIZ_DATA.MEMBER_IMAGE);
   const memberInfo = localStorage.getItem(QUIZ_DATA.MEMBER_INFO);

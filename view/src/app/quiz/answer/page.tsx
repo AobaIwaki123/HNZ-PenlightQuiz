@@ -10,6 +10,7 @@ import { QUIZ_DATA } from "@/lib/const";
 
 export default function Home() {
   const router = useRouter();
+  if (typeof window === 'undefined') return false;
 
   const nickname = localStorage.getItem(QUIZ_DATA.NICKNAME);
   const penlightColorLeft = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_LEFT);
