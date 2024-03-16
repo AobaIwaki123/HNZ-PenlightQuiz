@@ -12,6 +12,8 @@ import { isCorrectColor } from "@/lib/quiz/judge";
 
 export default function Home() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
   if (typeof window === 'undefined') return false;
 
   const nickname = localStorage.getItem(QUIZ_DATA.NICKNAME);
@@ -23,7 +25,6 @@ export default function Home() {
   const leftColorNameJn: string = JSON.parse(penlightColorLeft).nameJn;
   const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
 
-  const searchParams = useSearchParams();
   const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
   const colorIdRight: number = Number(searchParams.get("colorIdRight"));
 
