@@ -25,8 +25,8 @@ export default function Home() {
   const leftColorNameJn: string = JSON.parse(penlightColorLeft).nameJn;
   const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
 
-  const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
-  const colorIdRight: number = Number(searchParams.get("colorIdRight"));
+  // const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
+  // const colorIdRight: number = Number(searchParams.get("colorIdRight"));
 
   const moveToQuiz = async () => {
     await getNextQuiz();
@@ -47,7 +47,7 @@ export default function Home() {
               text-4xl md:text-8xl" id="answer">
               <div className="m-3 object-center object-cover">
                 {/*  isCorrectColorがtrueなら正解!,falseなら不正解を表示する*/}
-                {isCorrectColor(colorIdLeft, colorIdRight) ? "正解!" : "不正解!"}
+                {isCorrectColor(Number(searchParams.get("colorIdLeft")), Number(searchParams.get("colorIdRight"))) ? "正解!" : "不正解!"}
               </div>
             </Card>
           </div>
