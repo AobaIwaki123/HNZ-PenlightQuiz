@@ -21,8 +21,10 @@ export default function Home() {
   const leftColorNameJn: string = JSON.parse(penlightColorLeft).nameJn;
   const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
 
-  const moveToQuiz = () => {
-    getNextQuiz();
+  const moveToQuiz = async () => {
+    console.log("moveToQuiz")
+    await getNextQuiz();
+    console.log("moveToQuiz")
     router.push("/quiz");
   };
 
@@ -77,7 +79,8 @@ export default function Home() {
                 bg-transparent text-xl md:text-2xl
                 border-4 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
-                id="nextButton" onClick={moveToQuiz}>
+                onClick={moveToQuiz}
+                id="nextButton">
                 Next Quiz
               </Button>
             </div>

@@ -54,7 +54,7 @@ export default function Home() {
                 className="flex object-center object-cover"
               />
             </Card>
-            <Card className="text-2xl text-center w-full bg-penlight_blue border-accentcolor border-4">
+            <Card className="text-2xl text-center w-full bg-primarycolor border-accentcolor border-4">
               <div className="m-3">
                 <p>
                   {memberInfo}

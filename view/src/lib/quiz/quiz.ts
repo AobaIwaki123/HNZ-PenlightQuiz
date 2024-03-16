@@ -12,5 +12,6 @@ export const getNextQuiz = async () => {
   localStorage.setItem(QUIZ_DATA.NICKNAME, quizData.nickname);
   localStorage.setItem(QUIZ_DATA.MEMBER_COLOR_LEFT, JSON.stringify(quizData.colorLeft));
   localStorage.setItem(QUIZ_DATA.MEMBER_COLOR_RIGHT, JSON.stringify(quizData.colorRight));
+  localStorage.setItem(QUIZ_DATA.MEMBER_INFO, quizData.memberInfo);
 };
 
