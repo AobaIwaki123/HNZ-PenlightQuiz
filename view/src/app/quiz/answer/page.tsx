@@ -13,7 +13,6 @@ import { Suspense } from 'react'
 
 export default function Home() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   
   if (typeof window === 'undefined') return false;
 
@@ -28,6 +27,7 @@ export default function Home() {
 
   
   const isCorrectAnswer = () => {
+    const searchParams = useSearchParams();
     const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
     const colorIdRight: number = Number(searchParams.get("colorIdRight"));
     return isCorrectColor(colorIdLeft, colorIdRight);
