@@ -10,6 +10,7 @@ export default function Home() {
   const router = useRouter();
 
   const moveToQuiz = async () => {
+    // localStorage.clear();
     await getNextQuiz();
     router.push("/quiz");
   };

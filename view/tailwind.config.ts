@@ -15,7 +15,6 @@ const config = {
       primarycolor: "#fee100",
       secondarycolor: "#3F7C85",
       accentcolor: "#ffffff",
-
       penlight_pastelblue: "#0b8ed2",
       penlight_emeraldgreen: "#40948d",
       penlight_green: "#2f7050",
