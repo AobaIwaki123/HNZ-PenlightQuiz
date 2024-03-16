@@ -1,7 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { QUIZ_DATA } from "@/lib/const";
+import { PenlightProps, PenlightColor } from "@/lib/type";
 
 export const getRandomMember = async () => {
   const { rows } = await sql`SELECT * from penlight_quiz ORDER BY RANDOM() LIMIT 1`;
@@ -14,20 +14,34 @@ export const getRandomMember = async () => {
   const memberColorIdRight: number = quizData.member_color_id_right;
   const memberInfo: string = quizData.member_info;
 
-  const memberColorLeft: string = await getColorName(String(memberColorIdLeft));
-  const memberColorRight: string = await getColorName(String(memberColorIdRight));
+  const memberColorLeft: PenlightColor = await getColorName(String(memberColorIdLeft));
+  const memberColorRight: PenlightColor = await getColorName(String(memberColorIdRight));
 
-  return {
-    [QUIZ_DATA.MEMBER_NAME]: memberName,
-    [QUIZ_DATA.NICKNAME]: nickname,
-    [QUIZ_DATA.MEMBER_IMAGE]: memberImage,
-    [QUIZ_DATA.MEMBER_COLOR_LEFT]: memberColorLeft,
-    [QUIZ_DATA.MEMBER_COLOR_RIGHT]: memberColorRight,
-    [QUIZ_DATA.MEMBER_INFO]: memberInfo,
+  const penlightProps: PenlightProps = {
+    memberName,
+    memberImage,
+    memberInfo,
+    nickname,
+    colorLeft: memberColorLeft,
+    colorRight: memberColorRight,
   };
+
+  return penlightProps;
 };
 
 export const getColorName = async (colorId: string) => {
-  const { rows } = await sql`SELECT color_name from penlight WHERE penlight_id = ${colorId}`;
-  return rows[0].color_name;
+  const { rows } = await sql`SELECT color_name_jn, color_name_en from penlight WHERE penlight_id = ${colorId}`;
+  let colorNameJn: string = rows[0].color_name_jn;
+  const colorNameEn: string = rows[0].color_name_en;
+  if(Number(colorId) > 7) {
+    colorNameJn += `左(${-colorId+15})`;
+  } else {
+    colorNameJn += `右(${colorId})`;
+  }
+  const colorName: PenlightColor = {
+    nameJn: colorNameJn,
+    nameEn: colorNameEn,
+  };
+
+  return colorName;
 };
