@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from 'next/navigation';
 import React from "react";
+import { getMemberCount } from "@/api/quiz";
 
 type PenlightProps = {
   color: string;
@@ -14,6 +14,7 @@ export default function Home() {
   const router = useRouter();
 
   const moveToAnswer = () => {
+    getMemberCount();
     router.push("/quiz/answer");
   };
 
@@ -30,13 +31,12 @@ export default function Home() {
               </div>
             </Card>
             <Card className="flex m-3 border-accentcolor border-4">
-              <Image
-                src="/img/member/saitou.jpg"
+              <img
+                src="https://cdn.hinatazaka46.com/images/14/932/d3c695a54e1693e82b5f208a900ac/800_800_102400.jpg"
                 width={300}
                 height={300}
-                alt="saitou"
+                alt="memberImage"
                 className="flex object-center object-cover"
-                priority
               />
             </Card>
             <Card className="text-2xl text-center w-full bg-primarycolor border-accentcolor border-4">
