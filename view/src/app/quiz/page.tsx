@@ -18,6 +18,8 @@ type PenlightTopProps = {
 
 export default function Home() {
   const router = useRouter();
+  const [colorIdLeft, setColorIdLeft] = React.useState(0);
+  const [colorIdRight, setColorIdRight] = React.useState(0);
   if (typeof window === 'undefined') return false;
 
   const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
@@ -31,8 +33,6 @@ export default function Home() {
   const leftColorNameEn: string = JSON.parse(penlightColorLeft)[COLOR.NAME_EN];
   const rightColorNameEn: string = JSON.parse(penlightColorRight)[COLOR.NAME_EN];
 
-  const [colorIdLeft, setColorIdLeft] = React.useState(0);
-  const [colorIdRight, setColorIdRight] = React.useState(0);
 
   const moveToAnswer = () => {
     router.push("/quiz/answer?colorIdLeft=" + String(colorIdLeft) + "&colorIdRight=" + String(colorIdRight));
