@@ -39,6 +39,7 @@ export const getColorName = async (colorId: string) => {
     colorNameJn += `右(${colorId})`;
   }
   const colorName: PenlightColor = {
+    id: Number(colorId),
     nameJn: colorNameJn,
     nameEn: colorNameEn,
   };

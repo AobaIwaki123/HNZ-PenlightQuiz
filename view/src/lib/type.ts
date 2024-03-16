@@ -10,6 +10,7 @@ export type PenlightProps = {
 };
 
 export type PenlightColor = {
+  id: number;
   nameJn: string;
   nameEn: string;
 };
