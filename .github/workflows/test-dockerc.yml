@@ -11,4 +11,4 @@ jobs:
       - name: Checkout And Build
         run: docker compose -f docker-compose.yml up -d
       - name: Yarn Build
-        run: docker compose -f docker-compose.yml exec app yarn build
+        run: docker compose -f docker-compose.yml exec view yarn build
