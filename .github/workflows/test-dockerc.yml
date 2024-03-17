@@ -13,4 +13,5 @@ jobs:
       - name: Docker Compose Up
         run: docker compose -f docker-compose.yml up -d
       - name: Yarn Build
+        uses: ./
         run: docker compose -f docker-compose.yml exec hnz-view yarn install && yarn build
