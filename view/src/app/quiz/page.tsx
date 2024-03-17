@@ -115,10 +115,10 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
 
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
-      <div className="flex flex-col items-center w-1/2 h-4/5">
+      <Card  className="flex flex-col items-center w-1/4 h-4/5 border-2">
         <PenlightTop color={penlightColorEn} />
         <PenlightBottom />
-      </div>
+      </Card >
       <div className="flex justify-center w-full">
         <Card className="flex-auto border-2 border-accentcolor bg-basecolor
         text-accentcolor w-1/2 text-center">
@@ -146,21 +146,20 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
 const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
   const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
   return (
-    <Card className="flex flex-col h-2/3 w-1/2 
-      border-2 border-accentcolor">
+    <div className="flex flex-col w-full h-2/3">
       {/* <div className="h-5 w-full bg-basecolor"></div> */}
       <div className={`flex flex-auto justify-center items-center ${color}`}>
         <div className="text-shadow-md text-center text-accentcolor tracking-widest text-3xl vertical">
           {memberName}
         </div>
       </div>
-    </Card>
+    </div>
   );
 };
 
 const PenlightBottom: React.FC = () => {
   return (
-    <Card className="flex-col h-1/2 w-1/2 bg-accentcolor border-2">
+    <div className="flex-col w-full h-1/2">
       <div className="h-1/4 w-full 
         border-4 border-basecolor bg-accentcolor"></div>
       <div className="h-1/4 w-full bg-accentcolor 
@@ -170,6 +169,6 @@ const PenlightBottom: React.FC = () => {
           日向坂46
         </div>
       </div>
-    </Card>
+    </div>
   );
 };  
