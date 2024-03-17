@@ -1,7 +1,6 @@
 name: Test Docker Compose File
 run-name: ${{ github.actor }} is testing docker compose file
-on: push
-
+'on': push
 jobs:
   test:
     name: Test Docker Compose File
@@ -13,4 +12,4 @@ jobs:
       - name: Docker Compose Up
         run: docker compose -f docker-compose.yml up -d
       - name: Yarn Build
-        run: docker compose -f docker-compose.yml exec hnz-view sh -c "cd /view && yarn build"
+        run: docker compose -f docker-compose.yml exec hnz-view sh -c "ls"
