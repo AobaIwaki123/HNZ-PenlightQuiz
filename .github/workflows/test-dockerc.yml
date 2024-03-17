@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - name: Checkout And Build
+      - name: Docker Compose Build
+        run: docker compose -f docker-compose.yml build
+      - name: Docker Compose Up
         run: docker compose -f docker-compose.yml up -d
       - name: Yarn Build
         run: docker compose -f docker-compose.yml exec view yarn build
