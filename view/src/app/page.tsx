@@ -15,10 +15,10 @@ export default function Home() {
 
   return (
     <main>
-      <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-auto justify-center items-center">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <Button
           className="text-xl
-                   border-4 border-accentcolor bg-penlight_white text-penlight_sakurapink
+                  border-4 border-accentcolor bg-penlight_white text-penlight_sakurapink
                   hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
           onClick={moveToQuiz}
         >
