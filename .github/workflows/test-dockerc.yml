@@ -1,0 +1,11 @@
+name: Test Docker Compose File
+run-name: ${{ github.actor }} is testing docker compose file
+'on': push
+jobs:
+  test:
+    name: Test Docker Compose File
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker Compose Up
+        run: docker compose -f docker-compose.prod.yml up -d
