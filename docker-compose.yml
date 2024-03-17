@@ -1,7 +1,7 @@
 version: "3"
 services:
   # Next.jsの環境
-  view:
+  hnz-view:
     container_name: "hnz-view"
     build:
       context: ./view
