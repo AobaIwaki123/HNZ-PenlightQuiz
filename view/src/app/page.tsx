@@ -25,7 +25,7 @@ export default function Home() {
           Click to start
         </Button>
       </div>
-      <div className="flex-col h-screen bg-basecolor">
+      <div className="flex-col h-screen">
         <div className="flex flex-col h-1/2  w-full">
           <div className="flex flex-auto">
             <div className="flex-auto bg-penlight_pastelblue"></div>

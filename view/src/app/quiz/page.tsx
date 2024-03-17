@@ -67,10 +67,10 @@ export default function Home() {
         <div className="flex flex-col h-full w-1/2 p-4 justify-around items-center">
           <div className="flex h-3/4 w-full">
             <div className="h-full w-1/2" id="penlightLeft">
-              <Penlight handleColorIdChanged={setColorIdLeft}/>
+              <Penlight handleColorIdChanged={setColorIdLeft} />
             </div>
             <div className="h-full flex-auto" id="penlightRight">
-              <Penlight handleColorIdChanged={setColorIdRight}/>
+              <Penlight handleColorIdChanged={setColorIdRight} />
             </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
@@ -115,11 +115,11 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
 
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
-      <Card  className="flex flex-col items-center w-1/4 h-4/5 border-2">
+      <div className="flex flex-col items-center w-1/4 h-4/5 border-2 rounded-md overflow-hidden">
         <PenlightTop color={penlightColorEn} />
         <PenlightBottom />
-      </Card >
-      <div className="flex justify-center w-full">
+      </div >
+      <div className="flex justify-center w-2/3 p-1">
         <Card className="flex-auto border-2 border-accentcolor bg-basecolor
         text-accentcolor w-1/2 text-center">
           <p>{penlightColorJn}</p>
@@ -146,7 +146,7 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
 const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
   const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
   return (
-    <div className="flex flex-col w-full h-2/3">
+    <div className="flex flex-col w-full h-2/3 object-center object-cover">
       {/* <div className="h-5 w-full bg-basecolor"></div> */}
       <div className={`flex flex-auto justify-center items-center ${color}`}>
         <div className="text-shadow-md text-center text-accentcolor tracking-widest text-3xl vertical">
@@ -159,16 +159,28 @@ const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
 
 const PenlightBottom: React.FC = () => {
   return (
-    <div className="flex-col w-full h-1/2">
-      <div className="h-1/4 w-full 
-        border-4 border-basecolor bg-accentcolor"></div>
-      <div className="h-1/4 w-full bg-accentcolor 
-        border-4 border-basecolor"></div>
-      <div className="flex justify-center items-center h-1/2 bg-basecolor">
-        <div className="text-accentcolor transform -rotate-90">
-          日向坂46
+    <div className="flex-col w-full h-1/2 border-t-2">
+      <div className="flex flex-col h-1/2  w-full">
+        <div className="flex flex-auto">
+          <div className="flex-auto bg-penlight_pastelblue"></div>
+          <div className="flex-auto bg-penlight_emeraldgreen"></div>
+        </div>
+        <div className="flex flex-auto">
+          <div className="flex-auto bg-penlight_lightgreen"></div>
+          <div className="flex-auto bg-penlight_yellow"></div>
+        </div>
+      </div>
+      <div className="flex flex-col h-1/2  w-full">
+        <div className="flex flex-auto">
+          <div className="flex-auto bg-penlight_white"></div>
+          <div className="flex-auto bg-penlight_sakurapink"></div>
+        </div>
+        <div className="flex flex-auto">
+          <div className="flex-auto bg-penlight_violet"></div>
+          <div className="flex-auto bg-penlight_purple"></div>
         </div>
       </div>
     </div>
-  );
-};  
+    );
+  };  
+
