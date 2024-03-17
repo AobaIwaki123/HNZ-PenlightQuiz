@@ -7,9 +7,5 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
-      - name: Docker Compose Build
-        run: docker compose -f docker-compose.yml build
       - name: Docker Compose Up
-        run: docker compose -f docker-compose.yml up -d
-      - name: Yarn Build
-        run: docker compose -f docker-compose.yml exec hnz-view sh -c "ls && yarn install"
+        run: docker compose -f docker-compose.prod.yml up -d
