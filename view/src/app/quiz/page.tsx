@@ -66,10 +66,10 @@ export default function Home() {
         </div>
         <div className="flex flex-col h-full w-1/2 p-4 justify-around items-center">
           <div className="flex h-3/4 w-full">
-            <div className="h-full w-1/2 border-accentcolor border-4" id="penlightLeft">
+            <div className="h-full w-1/2" id="penlightLeft">
               <Penlight handleColorIdChanged={setColorIdLeft}/>
             </div>
-            <div className="h-full flex-auto border-accentcolor border-4" id="penlightRight">
+            <div className="h-full flex-auto" id="penlightRight">
               <Penlight handleColorIdChanged={setColorIdRight}/>
             </div>
           </div>
@@ -115,13 +115,14 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
 
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
-      <div className="flex flex-col items-center w-1/2 h-4/5 bg-secondarycolor">
+      <div className="flex flex-col items-center w-1/2 h-4/5">
         <PenlightTop color={penlightColorEn} />
         <PenlightBottom />
       </div>
       <div className="flex justify-center w-full">
-        <Card className="w-1/2 text-center border-4 border-basecolor">
-          {penlightColorJn}
+        <Card className="flex-auto border-2 border-accentcolor bg-basecolor
+        text-accentcolor w-1/2 text-center">
+          <p>{penlightColorJn}</p>
         </Card>
       </div>
       <div className="flex justify-evenly w-full">
@@ -145,21 +146,21 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
 const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
   const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
   return (
-    <div className="flex-col h-2/3 w-1/2 
-      border-4 border-basecolor bg-accentcolor">
-      <div className="h-5 w-full bg-basecolor"></div>
-      <div className={`flex h-full justify-center items-center ${color}`}>
+    <Card className="flex flex-col h-2/3 w-1/2 
+      border-2 border-accentcolor">
+      {/* <div className="h-5 w-full bg-basecolor"></div> */}
+      <div className={`flex flex-auto justify-center items-center ${color}`}>
         <div className="text-center text-accentcolor tracking-widest text-3xl vertical">
-          <p>{memberName}</p>
+          {memberName}
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
 const PenlightBottom: React.FC = () => {
   return (
-    <div className="flex-col h-1/2 w-1/2 bg-accentcolor">
+    <Card className="flex-col h-1/2 w-1/2 bg-accentcolor border-2">
       <div className="h-1/4 w-full 
         border-4 border-basecolor bg-accentcolor"></div>
       <div className="h-1/4 w-full bg-accentcolor 
@@ -169,6 +170,6 @@ const PenlightBottom: React.FC = () => {
           日向坂46
         </div>
       </div>
-    </div>
+    </Card>
   );
 };  
