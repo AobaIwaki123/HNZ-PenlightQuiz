@@ -1,10 +1,6 @@
 name: Test Docker Compose File
 run-name: ${{ github.actor }} is testing docker compose file
-
-on:
-  push:
-    branches:
-      - "master"
+on: push
 
 jobs:
   test:
