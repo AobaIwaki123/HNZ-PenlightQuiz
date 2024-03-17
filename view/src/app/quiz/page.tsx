@@ -150,7 +150,7 @@ const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
       border-2 border-accentcolor">
       {/* <div className="h-5 w-full bg-basecolor"></div> */}
       <div className={`flex flex-auto justify-center items-center ${color}`}>
-        <div className="text-center text-accentcolor tracking-widest text-3xl vertical">
+        <div className="text-shadow-md text-center text-accentcolor tracking-widest text-3xl vertical">
           {memberName}
         </div>
       </div>
