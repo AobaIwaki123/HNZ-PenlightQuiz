@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+const plugin = require("tailwindcss/plugin");
 
 const config = {
   darkMode: ["class"],
@@ -104,6 +105,33 @@ const config = {
       }
       addUtilities(newUtilities)
     },
+    plugin(function ({ addUtilities }: { addUtilities: Function }) {
+      const newUtilities = {
+        ".text-shadow": {
+          textShadow: "0px 2px 3px darkgrey",
+        },
+        ".text-shadow-md": {
+          textShadow: "0px 3px 3px darkgrey",
+        },
+        ".text-shadow-lg": {
+          textShadow: "0px 5px 3px darkgrey",
+        },
+        ".text-shadow-xl": {
+          textShadow: "0px 7px 3px darkgrey",
+        },
+        ".text-shadow-2xl": {
+          textShadow: "0px 10px 3px darkgrey",
+        },
+        ".text-shadow-none": {
+          textShadow: "none",
+        },
+        ".text-shadow-edge": {
+          textShadow:
+            "2px 2px #131313,2px 2px #131313,0 2px #131313,-2px 2px #131313,-2px 0 #131313,-2px -2px #131313,0 -2px #131313,2px -2px #131313",
+        },
+      };
+      addUtilities(newUtilities);
+    }),
     require("tailwindcss-animate")],
 } satisfies Config
 
