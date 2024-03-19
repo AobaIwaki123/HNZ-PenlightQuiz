@@ -36,31 +36,35 @@ export default function Home() {
 
   return (
     <main>
-      <div className="flex flex-wrap justify-around items-center h-screen bg-basecolor">
-        <div className="flex flex-col justify-around items-center h-full w-1/2 p-4">
-          <div className="flex flex-col justify-around w-4/5 h-full items-center">
-            <Card className="flex flex-col justify-around m-3 text-6xl text-center w-full h-30 bg-primarycolor border-accentcolor border-4">
-              <div className="m-4">
-                <p>
-                  {memberName}
-                </p>
-              </div>
+      <div className="flex h-screen bg-basecolor">
+        <div className="flex flex-col h-full w-1/2">
+          <div className="flex flex-1 justify-center items-center h-1/4 p-5">
+            <Card className="flex flex-1 justify-center p-4
+              text-2xl sm:text-5xl lg:text-7xl
+              bg-primarycolor border-4 border-accentcolor">
+              <p>
+                {memberName}
+              </p>
             </Card>
-            <Card className="flex m-3 border-accentcolor border-4">
+          </div>
+          <div className="flex flex-auto h-1/2 justify-center p-4">
+            <Card className="flex border-4 border-accentcolor">
               <img
                 src={memberImage}
                 width={300}
                 height={300}
                 alt="memberImage"
-                className="flex object-center object-cover"
+                className="object-center object-cover"
               />
             </Card>
-            <Card className="text-2xl text-center w-full bg-primarycolor border-accentcolor border-4">
-              <div className="m-3">
-                <p>
-                  {memberInfo}
-                </p>
-              </div>
+          </div>
+          <div className="flex flex-1 h-1/4 p-5">
+            <Card className="flex flex-1 justify-center p-4
+              text-lg sm:text-2xl lg:text-3xl
+              bg-primarycolor border-4 border-accentcolor">
+              <p>
+                {"memberInfo"}
+              </p>
             </Card>
           </div>
         </div>
@@ -74,8 +78,9 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
-            <Button className="h-1/2
-                bg-transparent text-xl md:text-2xl
+            <Button className="sm:text-xl lg:text-3xl
+                h-1/2
+                bg-transparent
                 border-4 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
               onClick={moveToAnswer}>
@@ -119,20 +124,22 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
         <PenlightTop color={penlightColorEn} />
         <PenlightBottom />
       </div >
-      <div className="flex justify-center w-2/3 p-1">
+      <div className="flex justify-center w-2/3 p-1
+        sm:text-base lg:text-lg">
         <Card className="flex-auto border-2 border-accentcolor bg-basecolor
         text-accentcolor w-1/2 text-center">
           <p>{penlightColorJn}</p>
         </Card>
       </div>
       <div className="flex justify-evenly w-full">
-        <Button className=" bg-transparent text-lg
+        <Button className="lg:text-xl
+                bg-transparent 
                 border-2 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
           onClick={decrementPenlightId}>
           Left
         </Button>
-        <Button className=" bg-transparent text-lg
+        <Button className="lg:text-xl bg-transparent 
                 border-2 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
           onClick={incrementPenlightId}>
@@ -149,7 +156,8 @@ const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
     <div className="flex flex-col w-full h-2/3 object-center object-cover">
       {/* <div className="h-5 w-full bg-basecolor"></div> */}
       <div className={`flex flex-auto justify-center items-center ${color}`}>
-        <div className="text-shadow-md text-center text-accentcolor tracking-widest text-3xl vertical">
+        <div className="text-lg sm:text-2xl lg:text-4xl
+          text-shadow-md text-center text-accentcolor tracking-widest vertical">
           {memberName}
         </div>
       </div>
@@ -181,6 +189,6 @@ const PenlightBottom: React.FC = () => {
         </div>
       </div>
     </div>
-    );
-  };  
+  );
+};
 

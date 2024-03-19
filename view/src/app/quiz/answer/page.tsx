@@ -13,7 +13,7 @@ import { Suspense } from 'react'
 
 export default function Home() {
   const router = useRouter();
-  
+
   if (typeof window === 'undefined') return false;
 
   const nickname = localStorage.getItem(QUIZ_DATA.NICKNAME);
@@ -25,7 +25,7 @@ export default function Home() {
   const leftColorNameJn: string = JSON.parse(penlightColorLeft).nameJn;
   const rightColorNameEn: string = JSON.parse(penlightColorRight).nameJn;
 
-  
+
   const IsCorrectAnswer = () => {
     const searchParams = useSearchParams();
     const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
@@ -45,11 +45,11 @@ export default function Home() {
   return (
     <main>
       <div className="flex h-screen bg-basecolor" id="main">
-        <div className="flex-col w-1/2 bg-primarycolor" id="left">
-          <div className="flex h-1/4 justify-center items-center bg-accentcolor " id="">
+        <div className="flex-col w-1/2" id="left">
+          <div className="flex h-1/4 justify-center items-center text-2xl sm:text-5xl lg:text-7xl bg-accentcolor " id="">
             <Card className="text-basecolor 
               border-4 border-basecolor
-              text-4xl md:text-8xl" id="answer">
+              " id="answer">
               <div className="m-3 object-center object-cover">
                 <Suspense>
                   {IsCorrectAnswer() ? "正解!" : "不正解!"}
@@ -58,7 +58,8 @@ export default function Home() {
             </Card>
           </div>
           <div className="flex h-1/4 justify-center items-center 
-            text-4xl md:text-8xl bg-basecolor " id="memberName">
+          text-2xl sm:text-5xl lg:text-7xl
+          bg-basecolor " id="memberName">
             <Card className=" text-accentcolor 
               border-4 border-accentcolor
               bg-transparent" id="">
@@ -68,7 +69,7 @@ export default function Home() {
             </Card>
           </div>
           <div className="flex flex-col h-1/2
-            text-4xl md:text-6xl 
+            text-xl sm:text-3xl lg:text-5xl
             bg-accentcolor" id="penlightColor">
             <div className="flex justify-center items-center h-1/2 w-full">
               <Card className="border-4 text-basecolor border-basecolor">
@@ -86,12 +87,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex-auto flex-col bg-secondarycolor" id="right">
+        <div className="flex-auto flex-col" id="right">
           <div className="h-3/4  bg-secondarycolor" id="blank"></div>
           <div className="flex h-1/4  bg-primarycolor" id="">
             <div className="flex justify-center items-center w-1/2 bg-primarycolor" id="blank">
               <Button className="h-1/2
-                bg-secondarycolor text-xl md:text-2xl text-primarycolor
+                text-lg sm:text-xl lg:text-3xl
+                bg-secondarycolor  text-primarycolor
                 border-4 border-secondarycolor
                 hover:bg-primarycolor hover:text-secondarycolor hover:border-secondarycolor"
                 onClick={moveToTop}
@@ -101,7 +103,8 @@ export default function Home() {
             </div>
             <div className="flex flex-auto justify-center items-center bg-basecolor" id="">
               <Button className="h-1/2
-                bg-transparent text-xl md:text-2xl
+                text-lg sm:text-xl lg:text-3xl
+                bg-transparent 
                 border-4 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
                 onClick={moveToQuiz}
