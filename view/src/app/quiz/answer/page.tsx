@@ -8,7 +8,7 @@ import {
 } from "@/lib/quiz/quiz";
 import { QUIZ_DATA } from "@/lib/const";
 import { useSearchParams } from "next/navigation";
-import { isCorrectColor } from "@/lib/quiz/judge";
+import { judgeColorMatch } from "@/lib/quiz/judge";
 import { Suspense } from 'react'
 
 export default function Home() {
@@ -30,7 +30,16 @@ export default function Home() {
     const searchParams = useSearchParams();
     const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
     const colorIdRight: number = Number(searchParams.get("colorIdRight"));
-    return isCorrectColor(colorIdLeft, colorIdRight);
+    switch (judgeColorMatch(colorIdLeft, colorIdRight)) {
+      case 0:
+        return "不正解！";
+      case 1:
+        return "惜しい！";
+      case 2:
+        return "正解！";
+      default:
+        return "***";
+    }
   };
 
   const moveToQuiz = async () => {
@@ -52,7 +61,7 @@ export default function Home() {
               " id="answer">
               <div className="m-3 object-center object-cover">
                 <Suspense>
-                  {IsCorrectAnswer() ? "正解!" : "不正解!"}
+                  {IsCorrectAnswer()}
                 </Suspense>
               </div>
             </Card>
