@@ -30,16 +30,7 @@ export default function Home() {
     const searchParams = useSearchParams();
     const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
     const colorIdRight: number = Number(searchParams.get("colorIdRight"));
-    switch (judgeColorMatch(colorIdLeft, colorIdRight)) {
-      case 0:
-        return "不正解！";
-      case 1:
-        return "惜しい！";
-      case 2:
-        return "正解！";
-      default:
-        return "***";
-    }
+    return judgeColorMatch(colorIdLeft, colorIdRight);
   };
 
   const moveToQuiz = async () => {
