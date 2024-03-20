@@ -6,7 +6,6 @@ import TerserPlugin from "terser-webpack-plugin";
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
 const nextConfig = (phase, { defaultConfig }) => {
-  console.log("nextConfig", phase, PHASE_DEVELOPMENT_SERVER);
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       /* 開発フェーズでのみ利用するオプションを設定 */
