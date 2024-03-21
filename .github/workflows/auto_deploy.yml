@@ -1,6 +1,9 @@
 name: Auto Deploy
 run-name: ${{ github.actor }} is deploying
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
