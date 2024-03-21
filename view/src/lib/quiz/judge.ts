@@ -8,23 +8,26 @@ export const judgeColorMatch = (colorIdLeft: number, colorIdRight: number): stri
   const constColorIdLeft: number = JSON.parse(correctColorLeft)[COLOR.ID];
   const constColorIdRight: number = JSON.parse(correctColorRight)[COLOR.ID];
 
-  const submitColorSet = new Set([colorIdLeft, colorIdRight]);
-  const correctColorSet = new Set([constColorIdLeft, constColorIdRight]);
-  const intersection = new Set([...submitColorSet].filter(x => correctColorSet.has(x)));
-  switch (intersection.size) {
+  // Replace Methods with List
+  const submitColorList = [colorIdLeft, colorIdRight];
+  let correctColorList = [constColorIdLeft, constColorIdRight];
+  
+  let correctCount = 0;
+  submitColorList.forEach((color, index) => {
+    if (correctColorList.includes(color)) {
+      correctColorList[index] = -1;
+      correctCount++;
+    }
+  });
+  console.log("correctCount", correctCount);
+
+  switch (correctCount) {
     case 0:
       return "不正解！";
     case 2:
       return "正解！";
     case 1:
-      switch (correctColorSet.size){
-        case 1:
-          return "正解！";
-        case 2:
-          return "惜しい！";
-        default:
-          return "***";
-      }
+      return "惜しい！";
     default:
       return "***";
   }
