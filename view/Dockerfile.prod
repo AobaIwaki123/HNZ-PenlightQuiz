@@ -15,5 +15,7 @@ RUN yarn install
 # Expose the port
 EXPOSE 3030
 
+RUN yarn build
+
 # Default command to run the application
-CMD ["sh", "-c", "PORT=3030 yarn dev"]
+CMD ["PORT=3030 yarn start"]

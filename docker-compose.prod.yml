@@ -5,6 +5,7 @@ services:
     container_name: "hnz-view"
     build:
       context: ./view
+      dockerfile: Dockerfile.prod
     volumes:
       - ./view:/view
       - ./view/node_modules:/view/node_modules
@@ -13,3 +14,5 @@ services:
       - "3030:3030"
     stdin_open: true
     tty: true
+    env_file:
+      - ./view/.env.development.local
