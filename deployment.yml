@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hnz-deployment
+  labels:
+    app: hnz
+spec: # Deploymentの望ましい状態を定義
+  replicas: 3 # 3つのレプリカPodを作成
+  selector:
+    matchLabels:
+      app: hnz
+  template:
+    metadata:
+      labels:
+        app: hnz
+    spec:
+      containers:
+      - name: hnz
+        image: ghcr.io/aobaiwaki123/hnz-penlightquiz:cicd-aiwaki-docker
+        ports:
+        - containerPort: 3030
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.1"
+            memory: "256Mi"
+
