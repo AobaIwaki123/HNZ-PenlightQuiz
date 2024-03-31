@@ -18,7 +18,7 @@ spec: # Deploymentの望ましい状態を定義
       - name: hnz
         image: ghcr.io/aobaiwaki123/hnz-penlightquiz:cicd-aiwaki-docker
         ports:
-        - containerPort: 3030
+        - containerPort: 3000
         resources:
           limits:
             cpu: "0.5"
