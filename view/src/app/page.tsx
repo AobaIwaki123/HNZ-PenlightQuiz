@@ -31,8 +31,8 @@ export default function Home() {
           <div className="flex flex-auto">
             <div className="flex-auto bg-penlight_pastelblue"></div>
             <div className="flex-auto bg-penlight_emeraldgreen"></div>
-            {/* <div className="flex-auto bg-penlight_green"></div>
-            <div className="flex-auto bg-penlight_pearlgreen"></div> */}
+            <div className="flex-auto bg-penlight_green"></div>
+            <div className="flex-auto bg-penlight_pearlgreen"></div>
           </div>
           <div className="flex flex-auto">
             <div className="flex-auto bg-penlight_lightgreen"></div>
