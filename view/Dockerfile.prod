@@ -4,7 +4,7 @@ FROM node:18-bookworm-slim AS base
 FROM base AS deps
 
 # RUN apk add --no-cache libc6-compat
-WORKDIR /app
+WORKDIR /view
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
@@ -16,8 +16,8 @@ RUN \
 
 # Rebuild source code 
 FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+WORKDIR /view
+COPY --from=deps /view/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMENTRY_DISABLED 1
@@ -31,7 +31,7 @@ RUN \
 
 # Production image
 FROM base AS runner
-WORKDIR /app
+WORKDIR /view
 
 ENV NODE_ENV production
 
@@ -40,10 +40,10 @@ ENV NEXT_TELEMENTRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
+COPY --from=builder /view/public ./public
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /view/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /view/.next/static ./.next/static
 
 USER nextjs
 

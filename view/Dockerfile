@@ -3,7 +3,7 @@ FROM node:18-bookworm-slim AS base
 # Install dependencies
 FROM base AS deps
 
-WORKDIR /app
+WORKDIR /view
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
@@ -15,13 +15,15 @@ RUN \
 
 # Development image
 FROM base AS runner
-WORKDIR /app
+WORKDIR /view
+
+RUN apt-get update -y && apt-get install -y openssl
 
 ENV NODE_ENV development
 
 ENV NEXT_TELEMENTRY_DISABLED 1
 
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /view/node_modules ./node_modules
 COPY . .
 
 EXPOSE 3030
