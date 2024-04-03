@@ -17,16 +17,12 @@ RUN \
 FROM base AS runner
 WORKDIR /app
 
-COPY . .
-
-COPY --from=deps /app/node_modules ./node_modules
-
 ENV NODE_ENV development
 
 ENV NEXT_TELEMENTRY_DISABLED 1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
 EXPOSE 3030
 
