@@ -13,3 +13,30 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
+
+model member {
+  id        String   @id @default(cuid())
+  name     String 
+  nickname String
+  penlightLeft Int
+  penlightRight Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model memberInfo {
+  id        String   @id @default(cuid())
+  name    String
+  info   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model memberImage {
+  id        String   @id @default(cuid())
+  name    String
+  official   String
+  fifthAnniversary String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
