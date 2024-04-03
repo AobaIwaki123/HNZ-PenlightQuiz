@@ -1,9 +1,8 @@
-FROM node:18-alpine AS base
+FROM node:18-bookworm-slim AS base
 
 # Install dependencies
 FROM base AS deps
 
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
@@ -14,41 +13,23 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-# Rebuild source code 
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
-ENV NEXT_TELEMENTRY_DISABLED 1
-
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-# Production image
+# Development image
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+COPY . .
+
+COPY --from=deps /app/node_modules ./node_modules
+
+ENV NODE_ENV development
 
 ENV NEXT_TELEMENTRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
+EXPOSE 3030
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+ENV PORT 3030
 
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
-
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD HOSTNAME="0.0.0.0" PORT=3030 yarn run dev
