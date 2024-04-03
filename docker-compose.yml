@@ -5,10 +5,10 @@ services:
     container_name: "hnz-view"
     build:
       context: ./view
+      dockerfile: Dockerfile
     volumes:
       - ./view:/view
       - ./view/node_modules:/view/node_modules
-    command: sh -c "yarn && PORT=3030 yarn dev"
     ports:
       - "3030:3030"
     stdin_open: true
