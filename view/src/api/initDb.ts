@@ -4,6 +4,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 import memberJson from "./template/member.json";
 import memberInfoJson from "./template/memberInfo.json";
 import memberImageJson from "./template/memberImage.json";
+import colorJson from "./template/color.json";
 
 const prisma = new PrismaClient();
 
@@ -19,4 +20,8 @@ export async function initMemberTables() {
   // Initialize MemberInfo Table
   await prisma.memberInfo.deleteMany();
   await prisma.memberInfo.createMany({ data: memberInfoJson.data });
+
+  // Initialize Color Table
+  await prisma.color.deleteMany();
+  await prisma.color.createMany({ data: colorJson.data });
 }

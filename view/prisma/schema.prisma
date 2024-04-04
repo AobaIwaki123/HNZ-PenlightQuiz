@@ -41,8 +41,8 @@ model memberImage {
   updatedAt DateTime @updatedAt
 }
 
-model Color {
-  id       String @id
+model color {
+  id       Int @id
   nameEn   String
   nameJa   String
   createdAt DateTime @default(now())
