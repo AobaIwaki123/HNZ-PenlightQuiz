@@ -48,3 +48,23 @@ model color {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// FIXME: Delete Below Later
+
+model penlight {
+  penlight_id       Int @id
+  color_name_jn   String
+  color_name_en   String
+}
+
+model penlight_quiz {
+  member_id Int @id @default(autoincrement())
+  member_name String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  member_image String
+  member_color_id_left Int
+  member_color_id_right Int
+  nickname String
+  member_info String
+}
