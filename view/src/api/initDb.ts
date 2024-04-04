@@ -5,10 +5,12 @@ import memberJson from "./template/member.json";
 import memberInfoJson from "./template/memberInfo.json";
 import memberImageJson from "./template/memberImage.json";
 import colorJson from "./template/color.json";
+import legacyPenlightQuizJson from "./template/legacy_penlight_quiz.json";
+import legacyPenlight from "./template/legacy_penlight.json";
 
 const prisma = new PrismaClient();
 
-export async function initMemberTables() {
+export const initMemberTables = async () => {
   // Initialize Member Table
   await prisma.member.deleteMany();
   await prisma.member.createMany({ data: memberJson.data });
@@ -24,4 +26,13 @@ export async function initMemberTables() {
   // Initialize Color Table
   await prisma.color.deleteMany();
   await prisma.color.createMany({ data: colorJson.data });
-}
+
+  // FIXME: Delete below later
+  // Initialize LegacyPenlight Table
+  await prisma.penlight.deleteMany();
+  await prisma.penlight.createMany({ data: legacyPenlight.data });
+
+  // Initialize LegacyPenlightQuiz Table
+  await prisma.penlight_quiz.deleteMany();
+  await prisma.penlight_quiz.createMany({ data: legacyPenlightQuizJson.data });
+};
