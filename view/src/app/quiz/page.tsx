@@ -39,12 +39,12 @@ export default function Home() {
       <div className="flex h-screen bg-basecolor">
         <div className="flex flex-col h-full w-1/2">
           <div className="flex flex-1 justify-center items-center h-1/4 p-5">
-            <Card className="flex flex-1 justify-center p-4
+            <Card
+              className="flex flex-1 justify-center p-4
               text-2xl sm:text-5xl lg:text-7xl
-              bg-primarycolor border-4 border-accentcolor">
-              <p>
-                {memberName}
-              </p>
+              bg-primarycolor border-4 border-accentcolor"
+            >
+              <p>{memberName}</p>
             </Card>
           </div>
           <div className="flex flex-auto h-1/2 justify-center p-4">
@@ -59,12 +59,12 @@ export default function Home() {
             </Card>
           </div>
           <div className="flex flex-1 h-1/4 p-5">
-            <Card className="flex flex-1 justify-center p-4
+            <Card
+              className="flex flex-1 justify-center p-4
               text-lg sm:text-2xl lg:text-3xl
-              bg-primarycolor border-4 border-accentcolor">
-              <p>
-                {"memberInfo"}
-              </p>
+              bg-primarycolor border-4 border-accentcolor"
+            >
+              <p>{memberInfo}</p>
             </Card>
           </div>
         </div>
@@ -78,12 +78,14 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
-            <Button className="sm:text-xl lg:text-3xl
+            <Button
+              className="sm:text-xl lg:text-3xl
                 h-1/2
                 bg-transparent
                 border-4 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
-              onClick={moveToAnswer}>
+              onClick={moveToAnswer}
+            >
               Submit Answer
             </Button>
           </div>
