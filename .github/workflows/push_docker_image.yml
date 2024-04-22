@@ -47,6 +47,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
+    needs: push_to_registries
     runs-on: ubuntu-latest
     steps:
       - name: Tailscale

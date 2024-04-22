@@ -17,6 +17,7 @@ export default function Home() {
     alert("Have a nice day!")
     alert("Bye!")
     alert("Bye!")
+    alert("Bye!")
   };
 
   return (
