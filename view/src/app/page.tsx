@@ -13,6 +13,7 @@ export default function Home() {
     // router.push("/quiz");
     alert("Sorry, this feature is not available yet.");
     alert("Please wait for the next update.")
+    alert("Thank you for your understanding.")
   };
 
   return (

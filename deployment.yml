@@ -16,7 +16,7 @@ spec: # Deploymentの望ましい状態を定義
     spec:
       containers:
       - name: hnz
-        image: ghcr.io/aobaiwaki123/hnz-penlightquiz:cicd-aiwaki-k8s
+        image: ghcr.io/aobaiwaki123/hnz-penlightquiz:master
         imagePullPolicy: Always
         ports:
         - containerPort: 3030

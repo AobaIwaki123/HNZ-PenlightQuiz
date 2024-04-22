@@ -24,6 +24,5 @@ jobs:
           port: ${{ secrets.SSH_PORT_MOMO}}
           script: |
             cd ~/HNZ-PenlightQuiz
-            git pull origin master
-            git checkout master
-            docker compose up -d
+            kubectl delete -f deployment.yml
+            kubectl apply -f service.yml
