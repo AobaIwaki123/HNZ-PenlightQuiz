@@ -21,4 +21,4 @@ jobs:
           port: ${{ secrets.SSH_PORT_MOMO}}
           script: |
             cd ~/HNZ-PenlightQuiz
-            minikube kubectl -- rollout deployment/hnz-deployment
+            minikube kubectl -- rollout restart deployment/hnz-deployment
