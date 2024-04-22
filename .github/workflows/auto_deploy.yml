@@ -22,5 +22,5 @@ jobs:
           script: |
             cd ~/HNZ-PenlightQuiz
             minikube start
-            kubectl delete -f deployment.yml
-            kubectl apply -f service.yml
+            minikube kubectl -- delete -f deployment.yml
+            minikube kubectl -- apply -f service.yml
