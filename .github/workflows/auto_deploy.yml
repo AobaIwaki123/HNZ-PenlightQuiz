@@ -24,5 +24,6 @@ jobs:
           port: ${{ secrets.SSH_PORT_MOMO}}
           script: |
             cd ~/HNZ-PenlightQuiz
-            kubectl delete -f deployment.yml
-            kubectl apply -f service.yml
+            minikube start
+            minikube kubectl -- delete -f deployment.yml
+            minikube kubectl -- apply -f service.yml
