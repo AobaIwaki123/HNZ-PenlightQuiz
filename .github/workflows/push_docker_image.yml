@@ -7,9 +7,13 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Publish Docker image
+name: Auto Deploy
+run-name: Auto Deploy
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   push_to_registries:
@@ -44,3 +48,24 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    needs: push_to_registries
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+      - name: Deploy on momo
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST_MOMO}}
+          username: ${{ secrets.SSH_USERNAME_MOMO}}
+          key: ${{ secrets.SSH_PRIVATE_KEY_MOMO}}
+          port: ${{ secrets.SSH_PORT_MOMO}}
+          script: |
+            cd ~/HNZ-PenlightQuiz
+            minikube kubectl -- rollout restart deployment/hnz-deployment
