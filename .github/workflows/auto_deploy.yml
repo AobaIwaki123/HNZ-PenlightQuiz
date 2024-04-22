@@ -1,9 +1,6 @@
 name: Auto Deploy
 run-name: ${{ github.actor }} is deploying
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   deploy:
@@ -24,6 +21,4 @@ jobs:
           port: ${{ secrets.SSH_PORT_MOMO}}
           script: |
             cd ~/HNZ-PenlightQuiz
-            minikube start
-            minikube kubectl -- delete -f deployment.yml
-            minikube kubectl -- apply -f service.yml
+            minikube kubectl -- rollout deployment/hnz-deployment
