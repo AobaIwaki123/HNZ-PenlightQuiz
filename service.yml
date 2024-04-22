@@ -7,10 +7,10 @@ metadata:
 spec:
   ports:
     - nodePort: 30001
-      port: 3000 # deployment.hnzに合わせる
+      port: 3030 # deployment.hnzに合わせる
       protocol: TCP
-      targetPort: 3000 # deployment.hnzに合わせる
+      targetPort: 3030 # deployment.hnzに合わせる
   selector:
     app: hnz
-  type: LoadBalancer
+  type: NodePort
 

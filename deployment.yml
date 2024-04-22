@@ -19,7 +19,7 @@ spec: # Deploymentの望ましい状態を定義
         image: ghcr.io/aobaiwaki123/hnz-penlightquiz:cicd-aiwaki-docker
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 3030
         resources:
           limits:
             cpu: "0.5"
