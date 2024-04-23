@@ -48,7 +48,8 @@ COPY --from=builder /view/public ./public
 
 COPY --from=builder --chown=nextjs:nodejs /view/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /view/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /view/prisma /view/prisma
+COPY --from=builder --chown=nextjs:nodejs /view/node_modules/.prisma/client ./node_modules/.prisma/client
+COPY --from=builder --chown=nextjs:nodejs /view/prisma ./prisma
 
 USER nextjs
 
