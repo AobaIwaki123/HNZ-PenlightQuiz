@@ -31,6 +31,8 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+RUN npx prisma generate
+
 # Production image
 FROM base AS runner
 WORKDIR /view
