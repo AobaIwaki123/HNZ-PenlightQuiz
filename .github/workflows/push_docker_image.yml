@@ -10,10 +10,11 @@
 name: Auto Deploy
 run-name: Auto Deploy
 
-on:
-  push:
-    branches:
-      - master
+on: push
+# on:
+#   push:
+#     branches:
+#       - master
 
 jobs:
   push_to_registries:
