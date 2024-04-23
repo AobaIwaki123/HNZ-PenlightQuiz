@@ -24,14 +24,14 @@ COPY . .
 
 ENV NEXT_TELEMENTRY_DISABLED 1
 
+RUN npx prisma generate
+
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
   else echo "Lockfile not found." && exit 1; \
   fi
-
-RUN npx prisma generate
 
 # Production image
 FROM base AS runner
