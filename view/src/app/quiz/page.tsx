@@ -60,8 +60,8 @@ export default function Home() {
           </div>
           <div className="flex flex-1 h-1/4 p-5">
             <Card
-              className="flex flex-1 justify-center p-4
-              text-lg sm:text-2xl lg:text-3xl
+              className="flex flex-1 justify-center p-6
+              text-base sm:text-xl lg:text-2xl
               bg-primarycolor border-4 border-accentcolor"
             >
               <p>{memberInfo}</p>
