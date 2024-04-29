@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import {
+  Noto_Sans_JP,
+} from "next/font/google";
+
+const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "日向坂46ペンライトクイズ",
@@ -13,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn("")}>{children}</body>
+    <html lang="en" className={notoSansJP.className}>
+      <body>{children}</body>
     </html>
   );
 }
