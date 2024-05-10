@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <main>
       <div className="flex flex-wrap h-screen">
-        <div className="flex flex-col h-full w-full sm:w-1/2 bg-basecolor">
+        <div className="flex flex-col h-1/2 sm:h-full w-full sm:w-1/2 bg-basecolor">
           <div className="flex flex-1 justify-center items-center h-1/4 p-5">
             <Card
               className="flex flex-1 justify-center p-4
@@ -80,7 +80,7 @@ export default function Home() {
             </Card>
           </div>
         </div>
-        <div className="flex flex-col h-full w-full sm:w-1/2 p-4 justify-around items-center bg-basecolor">
+        <div className="flex flex-col h-1/2 sm:h-full w-full sm:w-1/2 p-4 justify-around items-center bg-basecolor">
           <div className="flex h-3/4 w-full">
             <div className="h-full w-1/2" id="penlightLeft">
               <Penlight handleColorIdChanged={setColorIdLeft} />
