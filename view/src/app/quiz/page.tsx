@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { QUIZ_DATA, COLOR } from "@/lib/const";
 import { getColorName } from "@/api/quiz";
 import { PenlightColor } from "@/lib/type";
@@ -72,11 +72,11 @@ export default function Home() {
           </div>
           <div className="flex flex-1 h-1/4 p-5">
             <Card
-              className="flex flex-1 justify-center p-6
+              className="flex-auto justify-center p-6
               text-base sm:text-xl lg:text-2xl
               bg-primarycolor border-4 border-accentcolor"
             >
-              <p>{memberInfo}</p>
+              <textarea name="" id="" className="w-full bg-primarycolor">{memberInfo}</textarea>
             </Card>
           </div>
         </div>
