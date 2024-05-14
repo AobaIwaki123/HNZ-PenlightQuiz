@@ -63,10 +63,10 @@ export default function Home() {
             <Card className="flex border-4 border-accentcolor">
               <img
                 src={memberImage}
-                width={300}
-                height={300}
+                width={1000}
+                height={1000}
                 alt="memberImage"
-                className="object-center object-cover"
+                className="h-full w-full object-center object-cover"
               />
             </Card>
           </div>
