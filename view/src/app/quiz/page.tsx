@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { QUIZ_DATA, COLOR } from "@/lib/const";
 import { getColorName } from "@/api/quiz";
 import { PenlightColor } from "@/lib/type";
@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <main>
       <div className="flex flex-wrap h-screen">
-        <div className="flex flex-col h-full w-full sm:w-1/2 bg-basecolor">
+        <div className="flex flex-col h-1/2 sm:h-full w-full sm:w-1/2 bg-basecolor">
           <div className="flex flex-1 justify-center items-center h-1/4 p-5">
             <Card
               className="flex flex-1 justify-center p-4
@@ -63,24 +63,27 @@ export default function Home() {
             <Card className="flex border-4 border-accentcolor">
               <img
                 src={memberImage}
-                width={300}
-                height={300}
+                width={1000}
+                height={1000}
                 alt="memberImage"
-                className="object-center object-cover"
+                className="h-full w-full object-center object-cover"
               />
             </Card>
           </div>
           <div className="flex flex-1 h-1/4 p-5">
             <Card
-              className="flex flex-1 justify-center p-6
+              className="flex-auto justify-center p-2
               text-base sm:text-xl lg:text-2xl
               bg-primarycolor border-4 border-accentcolor"
             >
-              <p>{memberInfo}</p>
+              <textarea className="h-full w-full bg-primarycolor"
+                        style={{overflow: "auto"}}>
+                {memberInfo}
+              </textarea>
             </Card>
           </div>
         </div>
-        <div className="flex flex-col h-full w-full sm:w-1/2 p-4 justify-around items-center bg-basecolor">
+        <div className="flex flex-col h-1/2 sm:h-full w-full sm:w-1/2 p-4 justify-around items-center bg-basecolor">
           <div className="flex h-3/4 w-full">
             <div className="h-full w-1/2" id="penlightLeft">
               <Penlight handleColorIdChanged={setColorIdLeft} />
