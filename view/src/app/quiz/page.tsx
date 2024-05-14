@@ -60,13 +60,13 @@ export default function Home() {
             </Card>
           </div>
           <div className="flex flex-auto h-1/2 justify-center p-4">
-            <Card className="flex border-4 border-accentcolor">
+            <Card className="flex bg-transparent border-none">
               <img
                 src={memberImage}
-                width={1000}
-                height={1000}
+                width={300}
+                height={300}
                 alt="memberImage"
-                className="h-full w-full object-center object-cover"
+                className="w-full h-full object-contain"
               />
             </Card>
           </div>
