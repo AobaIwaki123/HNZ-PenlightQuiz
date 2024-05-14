@@ -66,7 +66,7 @@ export default function Home() {
                 width={300}
                 height={300}
                 alt="memberImage"
-                className="h-full w-full object-center"
+                className="h-full object-center"
               />
             </Card>
           </div>
