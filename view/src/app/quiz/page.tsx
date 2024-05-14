@@ -72,11 +72,14 @@ export default function Home() {
           </div>
           <div className="flex flex-1 h-1/4 p-5">
             <Card
-              className="flex-auto justify-center p-6
+              className="flex-auto justify-center p-2
               text-base sm:text-xl lg:text-2xl
               bg-primarycolor border-4 border-accentcolor"
             >
-              <textarea name="" id="" className="w-full bg-primarycolor">{memberInfo}</textarea>
+              <textarea className="h-full w-full bg-primarycolor"
+                        style={{overflow: "auto"}}>
+                {memberInfo}
+              </textarea>
             </Card>
           </div>
         </div>
