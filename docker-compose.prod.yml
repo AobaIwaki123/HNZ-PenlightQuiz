@@ -8,10 +8,21 @@ services:
     ports:
       - "3030:3030"
     stdin_open: true
-    tty: true 
+    tty: true
 
   cloudflare:
     image: "cloudflare/cloudflared:latest"
     container_name: "cloudflare"
-    volumes: ['./web/prod:/home/nonroot/.cloudflared']
-    command: tunnel run
+    volumes: ["./web/prod:/home/nonroot/.cloudflared"]
+    ports:
+      - 60123:60123
+    command: tunnel --metrics=cloudflare:60123 run
+
+  prometheus: # OSS for server/system monitoring
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - 9090:9090
+    restart: always
