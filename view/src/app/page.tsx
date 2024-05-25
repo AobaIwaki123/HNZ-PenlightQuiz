@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { getNextQuiz } from "@/lib/quiz/quiz";
+// import { getNextQuiz } from "@/lib/quiz/quiz";
 import { initMemberTables } from "@/api/initDb";
 
 export default function Home() {
