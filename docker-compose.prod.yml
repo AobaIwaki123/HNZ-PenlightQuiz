@@ -1,4 +1,3 @@
-version: "3"
 services:
   # Next.jsの環境
   hnz-view:
@@ -9,6 +8,10 @@ services:
     ports:
       - "3030:3030"
     stdin_open: true
-    tty: true
-    env_file:
-      - ./view/.env.development.local
+    tty: true 
+
+  cloudflare:
+    image: "cloudflare/cloudflared:latest"
+    container_name: "cloudflare"
+    volumes: ['./web/prod:/home/nonroot/.cloudflared']
+    command: tunnel run
