@@ -1,16 +1,8 @@
 import { create } from "zustand"
+import { QuizMemberInfoType } from "@/lib/type";
 
-export type quizMemberInfoType = {
-  name: string;
-  nickname: string;
-  penlightLeft: number;
-  penlightRight: number;
-  memberInfo: string;
-  memberImage: string;
-}
-
-type QuizMemberStore = quizMemberInfoType & {
-  setQuizMemberInfo: (info: quizMemberInfoType) => void;
+type QuizMemberStore = QuizMemberInfoType & {
+  setQuizMemberInfo: (info: QuizMemberInfoType) => void;
 };
 
 const useQuizMemberStore = create<QuizMemberStore>((set) => ({
