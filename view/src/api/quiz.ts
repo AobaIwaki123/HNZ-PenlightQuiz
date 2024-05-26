@@ -12,24 +12,39 @@ export const getQuiz = async () => {
   
   // Get Member Name
   const memberName = randomMember.name;
+  const penlightColorLeft = randomMember.penlightLeft;
+  const penlightColorRight = randomMember.penlightRight;
 
   // Get Member Info
-  const memberInfo = await getMemberInfo(memberName);
-  // Validate memberInfo
-  if (!memberInfo) return;
+  const memberInfo = getMemberInfo(memberName);
 
   // Get Member Image
-  const memberImage = await getMemberImage(memberName);
-  // Validate memberImage
-  if (!memberImage) return;
+  const memberImage = getMemberImage(memberName);
+
+  // Get Color
+  const penlightNameLeft = getPenlightName(penlightColorLeft);
+  const penlightNameRight = getPenlightName(penlightColorRight);
+
+  // Wait All
+  const [Info, Image, Left, Right] = await Promise.all([
+    memberInfo,
+    memberImage,
+    penlightNameLeft,
+    penlightNameRight,
+  ]);
+
+  // Validate 
+  if (!Info || !Image || !Left || !Right) return;
 
   const quizMember = {
     name: memberName,
     nickname: randomMember.nickname,
     penlightLeft: randomMember.penlightLeft,
     penlightRight: randomMember.penlightRight,
-    memberInfo: memberInfo.info,
-    memberImage: memberImage.official,
+    penlightLeftName: Left.nameJa,
+    penlightRightName: Right.nameJa,
+    memberInfo: Info.info, // Access the 'info' property using optional chaining
+    memberImage: Image.official,
   };
 
   return quizMember;
