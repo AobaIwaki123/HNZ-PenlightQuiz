@@ -10,6 +10,8 @@ const useQuizMemberStore = create<QuizMemberStore>((set) => ({
   nickname: " ",
   penlightLeft: 0,
   penlightRight: 0,
+  penlightLeftName: " ",
+  penlightRightName: " ",
   memberInfo: " ",
   memberImage: " ",
   setQuizMemberInfo: (info) => set(() => info),

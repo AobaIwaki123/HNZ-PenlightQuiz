@@ -1,25 +1,18 @@
 import { QUIZ_DATA, COLOR } from "@/lib/const";
-
+import { useQuizMemberStore } from "@/zustand/memberStore";
 
 export const judgeColorMatch = (colorIdLeft: number, colorIdRight: number): string => {
-  const correctColorLeft = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_LEFT);
-  const correctColorRight = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_RIGHT);
-  if (correctColorLeft === null || correctColorRight === null) return "***";
-  const constColorIdLeft: number = JSON.parse(correctColorLeft)[COLOR.ID];
-  const constColorIdRight: number = JSON.parse(correctColorRight)[COLOR.ID];
+  const quizMember = useQuizMemberStore((state) => state);
+  let correctColorList = [quizMember.penlightLeft, quizMember.penlightLeft];
 
-  // Replace Methods with List
-  const submitColorList = [colorIdLeft, colorIdRight];
-  let correctColorList = [constColorIdLeft, constColorIdRight];
-  
   let correctCount = 0;
-  submitColorList.forEach((color, index) => {
+
+  [colorIdLeft, colorIdRight].forEach((color, index) => {
     if (correctColorList.includes(color)) {
       correctColorList[index] = -1;
       correctCount++;
     }
   });
-  console.log("correctCount", correctCount);
 
   switch (correctCount) {
     case 0:

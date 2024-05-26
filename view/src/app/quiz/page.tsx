@@ -24,14 +24,16 @@ export default function Home() {
   const memberInfo = quizMember.memberInfo;
   const leftPenlightStore = createPenlightStore();
   const rightPenlightStore = createPenlightStore();
+  const leftPenlightId = leftPenlightStore((state) => state.id);
+  const rightPenlightId = rightPenlightStore((state) => state.id);
 
   const moveToAnswer = () => {
-    // router.push(
-    //   "/quiz/answer?colorIdLeft=" +
-    //     String(colorIdLeft) +
-    //     "&colorIdRight=" +
-    //     String(colorIdRight)
-    // );
+    router.push(
+      "/quiz/answer?colorIdLeft=" +
+        String(leftPenlightId) +
+        "&colorIdRight=" +
+        String(rightPenlightId)
+    );
   };
 
   return (
