@@ -22,7 +22,10 @@ export default function Home() {
   const [colorIdRight, setColorIdRight] = React.useState(0);
   if (typeof window === "undefined") return false;
 
-  const memberName = useQuizMemberStore((state) => state.name);
+  const quizMember = useQuizMemberStore((state) => state);
+  const memberName = quizMember.name;
+  const memberImage = quizMember.memberImage;
+  const memberInfo = quizMember.memberInfo;
 
   const moveToAnswer = () => {
     // router.push(
@@ -48,13 +51,13 @@ export default function Home() {
           </div>
           <div className="flex flex-auto h-1/2 justify-center p-4">
             <Card className="flex bg-transparent border-none">
-              {/* <img
+              <img
                 src={memberImage}
                 width={300}
                 height={300}
                 alt="memberImage"
                 className="w-full h-full object-contain"
-              /> */}
+              />
             </Card>
           </div>
           <div className="flex flex-1 h-1/4 p-5">
@@ -63,10 +66,9 @@ export default function Home() {
               text-base sm:text-xl lg:text-2xl
               bg-primarycolor border-4 border-accentcolor"
             >
-              <textarea className="h-full w-full bg-primarycolor"
-                        style={{overflow: "auto"}}>
-                {/* {memberInfo} */}
-              </textarea>
+              <p>
+                {memberInfo}
+              </p>
             </Card>
           </div>
         </div>
