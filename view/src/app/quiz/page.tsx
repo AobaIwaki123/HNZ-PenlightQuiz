@@ -5,8 +5,8 @@ import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { QUIZ_DATA, COLOR } from "@/lib/const";
-import { getColorName } from "@/api/quiz";
 import { PenlightColor } from "@/lib/type";
+import { useQuizMemberStore } from "@/zustand/memberStore";
 
 type PenlightProps = {
   handleColorIdChanged: (colorId: number) => void;
@@ -22,28 +22,15 @@ export default function Home() {
   const [colorIdRight, setColorIdRight] = React.useState(0);
   if (typeof window === "undefined") return false;
 
-  const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
-  const memberImage = localStorage.getItem(QUIZ_DATA.MEMBER_IMAGE);
-  const memberInfo = localStorage.getItem(QUIZ_DATA.MEMBER_INFO);
-  const penlightColorLeft = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_LEFT);
-  const penlightColorRight = localStorage.getItem(QUIZ_DATA.MEMBER_COLOR_RIGHT);
-
-  if (
-    memberName === null ||
-    memberImage === null ||
-    memberInfo === null ||
-    penlightColorLeft === null ||
-    penlightColorRight === null
-  )
-    return false;
+  const memberName = useQuizMemberStore((state) => state.name);
 
   const moveToAnswer = () => {
-    router.push(
-      "/quiz/answer?colorIdLeft=" +
-        String(colorIdLeft) +
-        "&colorIdRight=" +
-        String(colorIdRight)
-    );
+    // router.push(
+    //   "/quiz/answer?colorIdLeft=" +
+    //     String(colorIdLeft) +
+    //     "&colorIdRight=" +
+    //     String(colorIdRight)
+    // );
   };
 
   return (
@@ -61,13 +48,13 @@ export default function Home() {
           </div>
           <div className="flex flex-auto h-1/2 justify-center p-4">
             <Card className="flex bg-transparent border-none">
-              <img
+              {/* <img
                 src={memberImage}
                 width={300}
                 height={300}
                 alt="memberImage"
                 className="w-full h-full object-contain"
-              />
+              /> */}
             </Card>
           </div>
           <div className="flex flex-1 h-1/4 p-5">
@@ -78,19 +65,19 @@ export default function Home() {
             >
               <textarea className="h-full w-full bg-primarycolor"
                         style={{overflow: "auto"}}>
-                {memberInfo}
+                {/* {memberInfo} */}
               </textarea>
             </Card>
           </div>
         </div>
         <div className="flex flex-col h-1/2 sm:h-full w-full sm:w-1/2 p-4 justify-around items-center bg-basecolor">
           <div className="flex h-3/4 w-full">
-            <div className="h-full w-1/2" id="penlightLeft">
+            {/* <div className="h-full w-1/2" id="penlightLeft">
               <Penlight handleColorIdChanged={setColorIdLeft} />
             </div>
             <div className="h-full flex-auto" id="penlightRight">
               <Penlight handleColorIdChanged={setColorIdRight} />
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
             <Button
@@ -123,17 +110,17 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
     setPenlightId((prev) => (prev - 1 + 15) % 15);
   };
 
-  useEffect(() => {
-    const fetchColor = async () => {
-      const color: PenlightColor = await getColorName(String(penlightId));
-      setPenlightColorJn(color.nameJn);
-      const penlightColorEn = "bg-penlight_" + color.nameEn;
-      console.log(penlightColorEn);
-      setPenlightColorEn(penlightColorEn);
-    };
-    handleColorIdChanged(penlightId);
-    fetchColor();
-  }, [penlightId]);
+  // useEffect(() => {
+  //   const fetchColor = async () => {
+  //     const color: PenlightColor = await getColorName(String(penlightId));
+  //     setPenlightColorJn(color.nameJn);
+  //     const penlightColorEn = "bg-penlight_" + color.nameEn;
+  //     console.log(penlightColorEn);
+  //     setPenlightColorEn(penlightColorEn);
+  //   };
+  //   handleColorIdChanged(penlightId);
+  //   fetchColor();
+  // }, [penlightId]);
 
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
