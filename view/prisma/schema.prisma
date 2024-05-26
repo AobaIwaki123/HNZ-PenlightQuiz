@@ -14,7 +14,7 @@ datasource db {
 }
 
 model member {
-  id        String   @id @default(cuid())
+  id        Int   @id @default(autoincrement())
   name     String 
   nickname String
   penlightLeft Int
@@ -24,7 +24,7 @@ model member {
 }
 
 model memberInfo {
-  id        String   @id @default(cuid())
+  id        Int   @id @default(autoincrement())
   name    String
   info   String
   createdAt DateTime @default(now())
@@ -32,7 +32,7 @@ model memberInfo {
 }
 
 model memberImage {
-  id        String   @id @default(cuid())
+  id        Int   @id @default(autoincrement())
   name    String
   official   String
   fifthAnniversary String

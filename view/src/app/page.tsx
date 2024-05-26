@@ -2,24 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-// import { getNextQuiz } from "@/lib/quiz/quiz";
+import { getQuiz } from "@/api/quiz";
 import { initMemberTables } from "@/api/initDb";
 
 export default function Home() {
   const router = useRouter();
 
   const moveToQuiz = async () => {
-    // console.log("initMemberTables");
-    initMemberTables();
-    // await getNextQuiz();
+    // initMemberTables();
+    getQuiz();
     // router.push("/quiz");
-    alert("Sorry, this feature is not available yet.");
-    // alert("Please wait for the next update.")
-    // alert("Thank you for your understanding.")
-    // alert("Have a nice day!")
-    // alert("Bye!")
-    // alert("Bye!")
-    // alert("Bye!")
+    // alert("Sorry, this feature is not available yet.");
   };
 
   return (
