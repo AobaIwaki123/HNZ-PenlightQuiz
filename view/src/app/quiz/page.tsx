@@ -4,13 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { QUIZ_DATA, COLOR } from "@/lib/const";
-import { PenlightColor } from "@/lib/type";
 import { useQuizMemberStore } from "@/zustand/memberStore";
-
-type PenlightProps = {
-  handleColorIdChanged: (colorId: number) => void;
-};
+import { createPenlightStore } from "@/zustand/penlightStore";
+import { PenlightIdStore } from "@/zustand/penlightStore";
+import { StoreApi, UseBoundStore } from "zustand";
+import { getPenlightName } from "@/api/quiz";
 
 type PenlightTopProps = {
   color: string;
@@ -18,14 +16,14 @@ type PenlightTopProps = {
 
 export default function Home() {
   const router = useRouter();
-  const [colorIdLeft, setColorIdLeft] = React.useState(0);
-  const [colorIdRight, setColorIdRight] = React.useState(0);
   if (typeof window === "undefined") return false;
 
   const quizMember = useQuizMemberStore((state) => state);
   const memberName = quizMember.name;
   const memberImage = quizMember.memberImage;
   const memberInfo = quizMember.memberInfo;
+  const leftPenlightStore = createPenlightStore();
+  const rightPenlightStore = createPenlightStore();
 
   const moveToAnswer = () => {
     // router.push(
@@ -66,20 +64,18 @@ export default function Home() {
               text-base sm:text-xl lg:text-2xl
               bg-primarycolor border-4 border-accentcolor"
             >
-              <p>
-                {memberInfo}
-              </p>
+              <p>{memberInfo}</p>
             </Card>
           </div>
         </div>
         <div className="flex flex-col h-1/2 sm:h-full w-full sm:w-1/2 p-4 justify-around items-center bg-basecolor">
           <div className="flex h-3/4 w-full">
-            {/* <div className="h-full w-1/2" id="penlightLeft">
-              <Penlight handleColorIdChanged={setColorIdLeft} />
+            <div className="h-full w-1/2" id="penlightLeft">
+              <Penlight usePenlightStore={leftPenlightStore} />
             </div>
             <div className="h-full flex-auto" id="penlightRight">
-              <Penlight handleColorIdChanged={setColorIdRight} />
-            </div> */}
+              <Penlight usePenlightStore={rightPenlightStore} />
+            </div>
           </div>
           <div className="flex flex-auto w-full justify-center items-center bg-basecolor">
             <Button
@@ -99,35 +95,31 @@ export default function Home() {
   );
 }
 
-const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
-  const [penlightId, setPenlightId] = React.useState(0);
+type penlightProps = {
+  usePenlightStore: UseBoundStore<StoreApi<PenlightIdStore>>;
+};
+
+function Penlight({ usePenlightStore }: penlightProps) {
   const [penlightColorJn, setPenlightColorJn] = React.useState(String);
   const [penlightColorEn, setPenlightColorEn] = React.useState(String);
 
-  const incrementPenlightId = () => {
-    setPenlightId((prev) => (prev + 1) % 15);
-  };
+  const penlightId = usePenlightStore((state) => state.id);
+  const increaseId = usePenlightStore((state) => state.increaseId);
+  const decreaseId = usePenlightStore((state) => state.decreaseId);
 
-  const decrementPenlightId = () => {
-    setPenlightId((prev) => (prev - 1 + 15) % 15);
-  };
-
-  // useEffect(() => {
-  //   const fetchColor = async () => {
-  //     const color: PenlightColor = await getColorName(String(penlightId));
-  //     setPenlightColorJn(color.nameJn);
-  //     const penlightColorEn = "bg-penlight_" + color.nameEn;
-  //     console.log(penlightColorEn);
-  //     setPenlightColorEn(penlightColorEn);
-  //   };
-  //   handleColorIdChanged(penlightId);
-  //   fetchColor();
-  // }, [penlightId]);
+  useEffect(() => {
+    const penlightName = getPenlightName(penlightId);
+    penlightName.then((data)=>{
+      if(!data) return;
+      setPenlightColorEn(data.nameEn);
+      setPenlightColorJn(data.nameJa);
+    });
+  }, [penlightId]);
 
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
       <div className="flex flex-col items-center w-1/4 h-4/5 border-2 rounded-md overflow-hidden">
-        <PenlightTop color={penlightColorEn} />
+        <PenlightTop color={"bg-penlight_"+penlightColorEn} />
         <PenlightBottom />
       </div>
       <div
@@ -147,7 +139,7 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
                 bg-transparent 
                 border-2 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
-          onClick={decrementPenlightId}
+          onClick={decreaseId}
         >
           Left
         </Button>
@@ -155,20 +147,19 @@ const Penlight: React.FC<PenlightProps> = ({ handleColorIdChanged }) => {
           className="lg:text-xl bg-transparent 
                 border-2 border-accentcolor
                 hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
-          onClick={incrementPenlightId}
+          onClick={increaseId}
         >
           Right
         </Button>
       </div>
     </div>
   );
-};
+}
 
 const PenlightTop: React.FC<PenlightTopProps> = ({ color }) => {
-  const memberName = localStorage.getItem(QUIZ_DATA.MEMBER_NAME);
+  const memberName = useQuizMemberStore((state) => state.name);
   return (
     <div className="flex flex-col w-full h-2/3 object-center object-cover">
-      {/* <div className="h-5 w-full bg-basecolor"></div> */}
       <div className={`flex flex-auto justify-center items-center ${color}`}>
         <div
           className="text-lg sm:text-2xl lg:text-4xl
