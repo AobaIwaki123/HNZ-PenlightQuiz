@@ -1,7 +1,6 @@
 "use server";
 
 import { PrismaClient, Prisma } from "@prisma/client";
-import { quizMemberInfoType } from "@/zustand/memberStore";
 
 const prisma = new PrismaClient();
 
@@ -67,4 +66,13 @@ const getMemberImage = (memberName: string) => {
     },
   });
   return memberImage;
+}
+
+export const getPenlightName = (penlightId: number) => {
+  const penlightName = prisma.color.findFirst({
+    where: {
+      id: penlightId,
+    },
+  });
+  return penlightName;
 }
