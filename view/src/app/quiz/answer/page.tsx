@@ -15,13 +15,13 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const router = useRouter();
 
-  if (typeof window === "undefined") return false;
-
   const [leftColorNameJn, setLeftColorNameJn] = useState(String);
   const [rightColorNameJn, setRightColorNameJn] = useState(String);
   const setMemberInfo = useQuizMemberStore((state) => state.setQuizMemberInfo);
 
   const quizMember = useQuizMemberStore((state) => state);
+
+  if (typeof window === "undefined") return false;
 
   const nickname = quizMember.nickname;
   const colorNameLeft = quizMember.penlightLeftName;
@@ -31,7 +31,12 @@ export default function Home() {
     const searchParams = useSearchParams();
     const colorIdLeft: number = Number(searchParams.get("colorIdLeft"));
     const colorIdRight: number = Number(searchParams.get("colorIdRight"));
-    return judgeColorMatch(colorIdLeft, colorIdRight);
+    return judgeColorMatch(
+      colorIdLeft,
+      colorIdRight,
+      quizMember.penlightLeft,
+      quizMember.penlightRight
+    );
   };
 
   const moveToQuiz = () => {

@@ -1,9 +1,13 @@
 import { QUIZ_DATA, COLOR } from "@/lib/const";
 import { useQuizMemberStore } from "@/zustand/memberStore";
 
-export const judgeColorMatch = (colorIdLeft: number, colorIdRight: number): string => {
-  const quizMember = useQuizMemberStore((state) => state);
-  let correctColorList = [quizMember.penlightLeft, quizMember.penlightLeft];
+export const judgeColorMatch = (
+  colorIdLeft: number,
+  colorIdRight: number,
+  correctColorIdLeft: number,
+  correctColorIdRight: number
+) => {
+  let correctColorList = [correctColorIdLeft, correctColorIdRight];
 
   let correctCount = 0;
 
@@ -24,4 +28,4 @@ export const judgeColorMatch = (colorIdLeft: number, colorIdRight: number): stri
     default:
       return "***";
   }
-}
+};

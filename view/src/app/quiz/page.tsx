@@ -16,9 +16,10 @@ type PenlightTopProps = {
 
 export default function Home() {
   const router = useRouter();
+  const quizMember = useQuizMemberStore((state) => state);
+  
   if (typeof window === "undefined") return false;
 
-  const quizMember = useQuizMemberStore((state) => state);
   const memberName = quizMember.name;
   const memberImage = quizMember.memberImage;
   const memberInfo = quizMember.memberInfo;
