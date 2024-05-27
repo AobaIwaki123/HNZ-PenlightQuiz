@@ -2,21 +2,26 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { getNextQuiz } from "@/lib/quiz/quiz";
+import { initMemberTables } from "@/api/initDb";
+import { useQuizMemberStore } from "@/zustand/memberStore";
+import { getQuiz } from "@/api/quiz";
 
 export default function Home() {
   const router = useRouter();
 
+  const setMemberInfo = useQuizMemberStore((state) => state.setQuizMemberInfo);
+
   const moveToQuiz = async () => {
-    await getNextQuiz();
+    const quizMember = getQuiz();
+
+    // If member comes, log it
+    quizMember.then((quizMemberInfo) => {
+      // Validate quizMemberInfo
+      if (!quizMemberInfo) return;
+      setMemberInfo(quizMemberInfo); 
+    });
+
     router.push("/quiz");
-    // alert("Sorry, this feature is not available yet.");
-    // alert("Please wait for the next update.")
-    // alert("Thank you for your understanding.")
-    // alert("Have a nice day!")
-    // alert("Bye!")
-    // alert("Bye!")
-    // alert("Bye!")
   };
 
   return (

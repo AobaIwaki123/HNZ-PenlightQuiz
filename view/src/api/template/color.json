@@ -1,0 +1,19 @@
+{
+  "data": [
+    { "id": 0, "nameEn": "pastelblue", "nameJa": "パステルブルー" },
+    { "id": 1, "nameEn": "emeraldgreen", "nameJa": "エメラルドグリーン" },
+    { "id": 2, "nameEn": "green", "nameJa": "グリーン" },
+    { "id": 3, "nameEn": "pearlgreen", "nameJa": "パールグリーン" },
+    { "id": 4, "nameEn": "lightgreen", "nameJa": "ライトグリーン" },
+    { "id": 5, "nameEn": "yellow", "nameJa": "イエロー" },
+    { "id": 6, "nameEn": "orange", "nameJa": "オレンジ" },
+    { "id": 7, "nameEn": "red", "nameJa": "レッド" },
+    { "id": 8, "nameEn": "white", "nameJa": "ホワイト" },
+    { "id": 9, "nameEn": "sakurapink", "nameJa": "サクラピンク" },
+    { "id": 10, "nameEn": "pink", "nameJa": "ピンク" },
+    { "id": 11, "nameEn": "passionpink", "nameJa": "パッションピンク" },
+    { "id": 12, "nameEn": "violet", "nameJa": "バイオレット" },
+    { "id": 13, "nameEn": "purple", "nameJa": "パープル" },
+    { "id": 14, "nameEn": "blue", "nameJa": "ブルー" }
+  ]
+}

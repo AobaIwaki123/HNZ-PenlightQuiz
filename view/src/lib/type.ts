@@ -1,17 +1,10 @@
-import { QUIZ_DATA } from "./const";
-
-export type PenlightProps = {
-  memberName: string;
-  memberImage: string;
-  memberInfo: string;
+export type QuizMemberInfoType = {
+  name: string;
   nickname: string;
-  colorLeft: PenlightColor;
-  colorRight: PenlightColor;
+  penlightLeft: number;
+  penlightRight: number;
+  penlightLeftName: string;
+  penlightRightName: string;
+  memberInfo: string;
+  memberImage: string;
 };
-
-export type PenlightColor = {
-  id: number;
-  nameJn: string;
-  nameEn: string;
-};
-
