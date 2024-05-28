@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useQuizMemberStore } from "@/zustand/memberStore";
 import { createPenlightStore } from "@/zustand/penlightStore";
 import { PenlightIdStore } from "@/zustand/penlightStore";

@@ -18,7 +18,7 @@ export default function Home() {
     quizMember.then((quizMemberInfo) => {
       // Validate quizMemberInfo
       if (!quizMemberInfo) return;
-      setMemberInfo(quizMemberInfo); 
+      setMemberInfo(quizMemberInfo);
     });
 
     router.push("/quiz");
@@ -29,9 +29,9 @@ export default function Home() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <Button
           className="
-                  text-xl sm:text-3xl lg:text-4xl
-                  border-4 border-accentcolor bg-penlight_white text-penlight_sakurapink
-                  hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
+          text-xl sm:text-3xl lg:text-4xl
+          border-4 border-accentcolor bg-penlight_white text-penlight_sakurapink
+          hover:bg-accentcolor hover:text-basecolor hover:border-transparent"
           onClick={moveToQuiz}
         >
           Click to start

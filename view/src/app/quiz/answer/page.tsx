@@ -3,23 +3,29 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import { QUIZ_DATA } from "@/lib/const";
 import { useSearchParams } from "next/navigation";
 import { judgeColorMatch } from "@/lib/quiz/judge";
 import { Suspense } from "react";
 import { getQuiz } from "@/api/quiz";
 import { useQuizMemberStore } from "@/zustand/memberStore";
-import { getPenlightName } from "@/api/quiz";
-import { useEffect, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import Confetti, { IConfettiFunc } from "@/components/ui/confetti";
 
 export default function Home() {
   const router = useRouter();
 
-  const [leftColorNameJn, setLeftColorNameJn] = useState(String);
-  const [rightColorNameJn, setRightColorNameJn] = useState(String);
   const setMemberInfo = useQuizMemberStore((state) => state.setQuizMemberInfo);
-
+  const confettiRef = useRef<IConfettiFunc>(null);
   const quizMember = useQuizMemberStore((state) => state);
+
+  useEffect(() => {
+    if (!confettiRef.current) return;
+    confettiRef.current.show();
+    return () => {
+      if (!confettiRef.current) return;
+      confettiRef.current.hide();
+    };
+  }, []);
 
   if (typeof window === "undefined") return false;
 
@@ -108,7 +114,9 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-auto flex-col" id="right">
-          <div className="h-3/4  bg-secondarycolor" id="blank"></div>
+          <div className="h-3/4  bg-secondarycolor" id="blank">
+            <Confetti ref={confettiRef} />
+          </div>
           <div className="flex h-1/4  bg-primarycolor" id="">
             <div
               className="flex justify-center items-center w-1/2 bg-primarycolor"
