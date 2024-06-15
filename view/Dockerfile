@@ -26,8 +26,8 @@ ENV NEXT_TELEMENTRY_DISABLED 1
 COPY --from=deps /view/node_modules ./node_modules
 COPY . .
 
-EXPOSE 3030
+EXPOSE 3031
 
-ENV PORT 3030
+ENV PORT 3031
 
-CMD HOSTNAME="0.0.0.0" PORT=3030 yarn run dev
+CMD HOSTNAME="0.0.0.0" PORT=3031 yarn run dev
