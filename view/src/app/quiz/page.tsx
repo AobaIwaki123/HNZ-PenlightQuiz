@@ -17,7 +17,7 @@ type PenlightTopProps = {
 export default function Home() {
   const router = useRouter();
   const quizMember = useQuizMemberStore((state) => state);
-  
+
   if (typeof window === "undefined") return false;
 
   const memberName = quizMember.name;
@@ -25,15 +25,15 @@ export default function Home() {
   const memberInfo = quizMember.memberInfo;
   const leftPenlightStore = createPenlightStore();
   const rightPenlightStore = createPenlightStore();
-  const leftPenlightId = leftPenlightStore((state) => state.id);
-  const rightPenlightId = rightPenlightStore((state) => state.id);
+  const getLeftPenlightId = leftPenlightStore((state) => state.getId);
+  const getRightPenlightId = rightPenlightStore((state) => state.getId);
 
   const moveToAnswer = () => {
     router.push(
       "/quiz/answer?colorIdLeft=" +
-        String(leftPenlightId) +
+        String(getLeftPenlightId()) +
         "&colorIdRight=" +
-        String(rightPenlightId)
+        String(getRightPenlightId())
     );
   };
 
@@ -112,8 +112,8 @@ function Penlight({ usePenlightStore }: penlightProps) {
 
   useEffect(() => {
     const penlightName = getPenlightName(penlightId);
-    penlightName.then((data)=>{
-      if(!data) return;
+    penlightName.then((data) => {
+      if (!data) return;
       setPenlightColorEn(data.nameEn);
       setPenlightColorJn(data.nameJa);
     });
@@ -122,7 +122,7 @@ function Penlight({ usePenlightStore }: penlightProps) {
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
       <div className="flex flex-col items-center w-1/4 h-4/5 border-2 rounded-md overflow-hidden">
-        <PenlightTop color={"bg-penlight_"+penlightColorEn} />
+        <PenlightTop color={"bg-penlight_" + penlightColorEn} />
         <PenlightBottom />
       </div>
       <div
