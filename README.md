@@ -6,4 +6,4 @@
 
 ## デプロイページ
 
-[日向坂46ペンライトクイズ](https://hnz-penlight-quiz.vercel.app/)
+[日向坂46ペンライトクイズ](https://hnz.shaoba.tech/)
