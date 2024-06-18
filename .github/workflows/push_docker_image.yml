@@ -49,6 +49,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          secrets: |
+            POSTGRES_PRISMA_URL=${{ secrets.POSTGRES_PRISMA_URL }}
 
   deploy:
     needs: push_to_registries
