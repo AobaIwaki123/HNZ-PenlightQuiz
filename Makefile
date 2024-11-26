@@ -12,14 +12,21 @@ clean-build-dev:
 up-dev:
 	@docker compose up -d
 
+clean-up-dev: clean-build-dev up-dev
+
 down-dev:
 	@docker compose down
 
 build-prod:
 	@docker compose -f docker-compose.prod.yml build
 
+clean-build-prod:
+	@docker compose -f docker-compose.prod.yml build --no-cache
+
 up-prod:
 	@docker compose -f docker-compose.prod.yml up -d
+
+clean-up-prod: clean-build-prod up-prod
 
 down-prod:
 	@docker compose -f docker-compose.prod.yml down
