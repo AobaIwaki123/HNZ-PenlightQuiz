@@ -1,4 +1,29 @@
-install-psql-client:
+init: copy-env
+
+copy-env:
+	@ cp ./view/.env.example ./view/.env
+
+build-dev:
+	@docker compose build
+
+clean-build-dev:
+	@docker compose build --no-cache
+
+up-dev:
+	@docker compose up -d
+
+down-dev:
+	@docker compose down
+
+build-prod:
+	@docker compose -f docker-compose.prod.yml build
+
+up-prod:
+	@docker compose -f docker-compose.prod.yml up -d
+
+down-prod:
+	@docker compose -f docker-compose.prod.yml down
+
 install-psql-client:
 	@echo "Updating package lists..."
 	@sudo apt update
