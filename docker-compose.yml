@@ -1,7 +1,7 @@
 services:
   # Next.jsの環境
-  hnz-view:
-    container_name: "hnz-view"
+  view-dev:
+    container_name: "hnz-view-dev"
     build:
       context: ./view
       dockerfile: Dockerfile
@@ -9,25 +9,8 @@ services:
       - ./view:/view
       - ./view/node_modules:/view/node_modules
     ports:
-      - "3031:3031"
+      - "3030:3000"
     stdin_open: true
     tty: true
     env_file:
-      - ./view/.env.development.local
-
-  postgres:
-    image: postgres
-    container_name: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: testdb01
-    ports:
-      - 5433:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
-      - ./postgres_service/initdb.d:/docker-entrypoint-intdb.d
-
-volumes:
-  postgres:
-    name: pg
+      - ./view/.env
