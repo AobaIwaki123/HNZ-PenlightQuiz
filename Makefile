@@ -12,7 +12,7 @@ clean-build-dev:
 up-dev:
 	@docker compose up -d
 
-clean-up-dev: clean-build-dev up-dev
+clean-restart-dev: clean-build-dev up-dev
 
 down-dev:
 	@docker compose down
@@ -26,7 +26,7 @@ clean-build-prod:
 up-prod:
 	@docker compose -f docker-compose.prod.yml up -d
 
-clean-up-prod: clean-build-prod up-prod
+clean-restart-prod: clean-build-prod up-prod
 
 down-prod:
 	@docker compose -f docker-compose.prod.yml down
