@@ -81,13 +81,16 @@ const getMemberInfo = (memberId: number) => {
   return memberInfo;
 };
 
-const getMemberImage = (memberId: number) => {
-  const memberImage = prisma.memberImage.findFirst({
+const getMemberImage = async (memberId: number) => {
+  const memberImages = await prisma.memberImage.findMany({
     where: {
       memberId: memberId,
     },
-  });
-  return memberImage;
+  })
+
+  const randomIdx = getRandomInt(0, memberImages.length - 1);
+
+  return memberImages[randomIdx];
 }
 
 export const getPenlightName = (penlightId: number) => {
