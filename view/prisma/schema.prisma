@@ -14,56 +14,28 @@ datasource db {
 }
 
 model member {
-  id        Int   @id @default(autoincrement())
+  id        Int   @id
   name     String 
   nickname String
   penlightLeft Int
   penlightRight Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model memberInfo {
-  id        Int   @id @default(autoincrement())
-  name    String
-  info   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model memberImage {
-  id        Int   @id @default(autoincrement())
-  name    String
-  official   String
-  fifthAnniversary String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int   @id
+  url      String
+  memberId Int
 }
 
-model color {
+model memberInfo {
+  id        Int   @id
+  info   String
+  memberId Int
+}
+
+
+model penlightColor {
   id       Int @id
   nameEn   String
   nameJa   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// FIXME: Delete Below Later
-
-model penlight {
-  penlight_id       Int @id
-  color_name_jn   String
-  color_name_en   String
-}
-
-model penlight_quiz {
-  member_id Int @id @default(autoincrement())
-  member_name String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  member_image String
-  member_color_id_left Int
-  member_color_id_right Int
-  nickname String
-  member_info String
 }

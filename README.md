@@ -11,7 +11,9 @@
 ## Quick Start
 
 ```sh
-$ make init
+$ make init # .envファイルの作成
+$ make up-dev # 開発環境の起動
+$ make clean-restart-dev # 開発環境の再起動
 ```
 
 ## デプロイページ

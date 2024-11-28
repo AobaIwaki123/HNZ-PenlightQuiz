@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { initMemberTables } from "@/api/initDb";
 import { useQuizMemberStore } from "@/zustand/memberStore";
 import { getQuiz } from "@/api/quiz";
 

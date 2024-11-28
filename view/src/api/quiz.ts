@@ -11,15 +11,17 @@ export const getQuiz = async () => {
   if (!randomMember) return;
   
   // Get Member Name
+  const memberId = randomMember.id;
   const memberName = randomMember.name;
   const penlightColorLeft = randomMember.penlightLeft;
   const penlightColorRight = randomMember.penlightRight;
 
-  // Get Member Info
-  const memberInfo = getMemberInfo(memberName);
-
   // Get Member Image
-  const memberImage = getMemberImage(memberName);
+  const memberImage = getMemberImage(memberId);
+  
+  // Get Member Info
+  const memberInfo = getMemberInfo(memberId);
+
 
   // Get Color
   const penlightNameLeft = getPenlightName(penlightColorLeft);
@@ -44,17 +46,22 @@ export const getQuiz = async () => {
     penlightLeftName: Left.nameJa,
     penlightRightName: Right.nameJa,
     memberInfo: Info.info, // Access the 'info' property using optional chaining
-    memberImage: Image.official,
+    memberImage: Image.url,
   };
 
   return quizMember;
+}
+
+const getRandomInt = (min: number, max: number): number => {
+  // min と max を含むランダムな整数を返す
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const getRandomMember = async () =>{
   // Get 1 Member Randomly
   const memberCount = await prisma.member.count();
 
-  const randomMemberId = Math.floor(Math.random() * memberCount) + 1;
+  const randomMemberId = getRandomInt(1, memberCount);
 
   const member = await prisma.member.findUnique({
     where: {
@@ -65,26 +72,26 @@ const getRandomMember = async () =>{
   return member;
 }
 
-const getMemberInfo = (memberName: string) => {
+const getMemberInfo = (memberId: number) => {
   const memberInfo = prisma.memberInfo.findFirst({
     where: {
-      name: memberName,
+      memberId: memberId,
     },
   });
   return memberInfo;
-}
+};
 
-const getMemberImage = (memberName: string) => {
+const getMemberImage = (memberId: number) => {
   const memberImage = prisma.memberImage.findFirst({
     where: {
-      name: memberName,
+      memberId: memberId,
     },
   });
   return memberImage;
 }
 
 export const getPenlightName = (penlightId: number) => {
-  const penlightName = prisma.color.findFirst({
+  const penlightName = prisma.penlightColor.findFirst({
     where: {
       id: penlightId,
     },
