@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import AnswerCard from "@/components/ui/answerCard";
 import NickNameCard from "@/components/ui/nicknameCard";
 import PenlightCard from "@/components/ui/penlightCard";
@@ -64,24 +63,28 @@ export default function Home() {
               <AnswerCard>{IsCorrectAnswer()}</AnswerCard>
             </div>
             <div className="flex flex-auto bg-basecolor">
-              <NickNameCard>nickname</NickNameCard>
+              <NickNameCard>{nickname}</NickNameCard>
             </div>
           </div>
           <div className="flex flex-col flex-auto bg-primarycolor">
             <div className="flex h-1/2 bg-basecolor">
-              <PenlightCard>penlight1</PenlightCard>
+              <PenlightCard>{colorNameLeft}</PenlightCard>
             </div>
             <div className="flex flex-auto bg-basecolor">
-              <PenlightCard>penlight2</PenlightCard>
+              <PenlightCard>{colorNameRight}</PenlightCard>
             </div>
           </div>
         </div>
         <div className="flex flex-auto bg-basecolor ">
           <div className="flex w-1/2">
-            <CustomButton>Top Page</CustomButton>
+            <CustomButton
+              onClick={moveToTop}
+              >Top Page</CustomButton>
           </div>
           <div className="flex flex-auto">
-            <CustomButton>Next Quiz</CustomButton>
+            <CustomButton
+              onClick={moveToQuiz}
+              >Next Quiz</CustomButton>
           </div>
         </div>
       </div>
