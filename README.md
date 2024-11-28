@@ -19,7 +19,7 @@ $ make clean-restart-dev # 開発環境の再起動
 ## Release Deploy
 
 ```sh
-$ make donw-prod
+$ make down-prod
 $ make clean-up-prod
 ```
 
@@ -30,3 +30,4 @@ $ make clean-up-prod
 ## 参考
 
 - [Postgres Client v17のインストール手順](https://dev.to/johndotowl/postgresql-17-installation-on-ubuntu-2404-5bfi)
+- https://github.com/prisma/prisma/discussions/5886
