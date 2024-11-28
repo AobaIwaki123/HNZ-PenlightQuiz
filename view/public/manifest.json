@@ -1,0 +1,27 @@
+{
+  "theme_color": "#8936FF",
+  "background_color": "#2EC6FE",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "icon512_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-US",
+  "description": "日向坂46のペンライトクイズです",
+  "name": "日向坂46ペンライトクイズ",
+  "short_name": "日向坂ペンラクイズ",
+  "start_url": "https://hnz.shaoba.tech",
+  "scope": "https://hnz.shaoba.tech"
+}
