@@ -41,7 +41,7 @@ export default function Home() {
     <main>
       <div className="flex flex-wrap h-screen">
         <div className="flex flex-col h-1/2 sm:h-full w-full sm:w-1/2 bg-basecolor">
-          <div className="flex flex-1 justify-center items-center h-1/4 p-5">
+          <div className="hidden sm:flex flex-1 justify-center items-center h-1/4 p-5">
             <Card
               className="flex flex-1 justify-center p-4
               text-2xl sm:text-5xl lg:text-7xl
@@ -61,7 +61,7 @@ export default function Home() {
               />
             </Card>
           </div>
-          <div className="flex flex-1 h-1/4 p-5">
+          <div className="hidden sm:flex flex-1 h-1/4 p-5">
             <Card
               className="flex-auto justify-center p-2
               text-base sm:text-xl lg:text-2xl
