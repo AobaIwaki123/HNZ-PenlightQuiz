@@ -21,7 +21,7 @@
   "lang": "en-US",
   "description": "日向坂46のペンライトクイズです",
   "name": "日向坂46ペンライトクイズ",
-  "short_name": "日向坂ペンラクイズ",
+  "short_name": "ペンラクイズ",
   "start_url": "https://hnz.shaoba.tech",
   "scope": "https://hnz.shaoba.tech"
 }

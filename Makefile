@@ -32,10 +32,15 @@ up-prod:
 clean-up-prod: clean-build-prod up-prod
 
 build-restart-prod: clean-build-prod clean-restart-prod
+
 clean-restart-prod: down-prod up-prod
 
 down-prod:
 	@docker compose -f docker-compose.prod.yml down
+
+delete-branches:
+	git remote prune origin
+	git branch | xargs git branch -d
 
 install-psql-client:
 	@echo "Updating package lists..."
