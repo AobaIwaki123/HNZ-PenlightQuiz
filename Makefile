@@ -21,13 +21,13 @@ shell-dev:
 	@docker compose exec -it view-dev bash
 
 build-prod:
-	@docker compose -f docker-compose.prod.yml build
+	@docker compose -f compose.prod.yml build
 
 clean-build-prod:
-	@docker compose -f docker-compose.prod.yml build --no-cache
+	@docker compose -f compose.prod.yml build --no-cache
 
 up-prod:
-	@docker compose -f docker-compose.prod.yml up -d
+	@docker compose -f compose.prod.yml up -d
 
 clean-up-prod: clean-build-prod up-prod
 
@@ -36,7 +36,7 @@ build-restart-prod: clean-build-prod clean-restart-prod
 clean-restart-prod: down-prod up-prod
 
 down-prod:
-	@docker compose -f docker-compose.prod.yml down
+	@docker compose -f compose.prod.yml down
 
 delete-branches:
 	git remote prune origin
