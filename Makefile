@@ -29,6 +29,10 @@ clean-build-prod:
 up-prod:
 	@docker compose -f compose.prod.yml up -d
 
+restart-prod:
+	@docker compose -f compose.prod.yml down
+	@docker compose -f compose.prod.yml up -d
+
 clean-up-prod: clean-build-prod up-prod
 
 build-restart-prod: clean-build-prod clean-restart-prod
